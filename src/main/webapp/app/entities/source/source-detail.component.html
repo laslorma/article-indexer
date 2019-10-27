@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="source">
+            <h2><span jhiTranslate="indexerApp.source.detail.title">Source</span> {{source.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.source.sourceId">Source Id</span></dt>
+                <dd>
+                    <span>{{source.sourceId}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.name">Name</span></dt>
+                <dd>
+                    <span>{{source.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.description">Description</span></dt>
+                <dd>
+                    <span>{{source.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.url">Url</span></dt>
+                <dd>
+                    <span>{{source.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.category">Category</span></dt>
+                <dd>
+                    <span>{{source.category}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.language">Language</span></dt>
+                <dd>
+                    <span>{{source.language}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.country">Country</span></dt>
+                <dd>
+                    <span>{{source.country}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.source.active">Active</span></dt>
+                <dd>
+                    <span>{{source.active}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/source', source.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

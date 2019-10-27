@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="indexSession">
+            <h2><span jhiTranslate="indexerApp.indexSession.detail.title">Index Session</span> {{indexSession.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.indexSession.newsApiCalls">News Api Calls</span></dt>
+                <dd>
+                    <span>{{indexSession.newsApiCalls}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.fiveFilterApiCalls">Five Filter Api Calls</span></dt>
+                <dd>
+                    <span>{{indexSession.fiveFilterApiCalls}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.started">Started</span></dt>
+                <dd>
+                    <span>{{indexSession.started}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.ended">Ended</span></dt>
+                <dd>
+                    <span>{{indexSession.ended}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.duration">Duration</span></dt>
+                <dd>
+                    <span>{{indexSession.duration}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.totalArticles">Total Articles</span></dt>
+                <dd>
+                    <span>{{indexSession.totalArticles}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.indexing">Indexing</span></dt>
+                <dd>
+                    <span>{{indexSession.indexing}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.articlesSaved">Articles Saved</span></dt>
+                <dd>
+                    <span>{{indexSession.articlesSaved}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.errorMessage">Error Message</span></dt>
+                <dd>
+                    <span>{{indexSession.errorMessage}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexSession.hadError">Had Error</span></dt>
+                <dd>
+                    <span>{{indexSession.hadError}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/index-session', indexSession.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+version: '2'
+services:
+  indexer-app:
+    image: indexer
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://indexer-mysql:3306/indexer?useUnicode=true&characterEncoding=utf8&useSSL=false
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+      - SPRING_DATA_JEST_URI=http://indexer-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://indexer-elasticsearch:9200
+    ports:
+      - 8085:8085
+  indexer-mysql:
+    extends:
+      file: mysql.yml
+      service: indexer-mysql
+  indexer-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: indexer-elasticsearch

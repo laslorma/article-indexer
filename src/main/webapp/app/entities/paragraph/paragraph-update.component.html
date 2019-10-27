@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-paragraph-heading" jhiTranslate="indexerApp.paragraph.home.createOrEditLabel">Create or edit a Paragraph</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.content" for="field_content">Content</label>
+                    <textarea class="form-control" name="content" id="field_content"
+                              formControlName="content"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.originalCleanedContent" for="field_originalCleanedContent">Original Cleaned Content</label>
+                    <textarea class="form-control" name="originalCleanedContent" id="field_originalCleanedContent"
+                              formControlName="originalCleanedContent"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.totalWords" for="field_totalWords">Total Words</label>
+                    <input type="number" class="form-control" name="totalWords" id="field_totalWords"
+                           formControlName="totalWords"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.header" for="field_header">Header</label>
+                    <input type="checkbox" class="form-control" name="header" id="field_header"
+                           formControlName="header"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.readability" for="field_readability">Readability</label>
+                    <input type="text" class="form-control" name="readability" id="field_readability"
+                           formControlName="readability"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="indexerApp.paragraph.article" for="field_article">Article</label>
+                    <select class="form-control" id="field_article" name="article" formControlName="article">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="articleOption.id === editForm.get('article').value?.id ? editForm.get('article').value : articleOption" *ngFor="let articleOption of articles; trackBy: trackArticleById">{{articleOption.title}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

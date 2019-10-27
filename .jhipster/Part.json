@@ -1,0 +1,38 @@
+{
+    "name": "Part",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 500
+        },
+        {
+            "fieldName": "posibleOptions",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "article",
+            "otherEntityRelationshipName": "part",
+            "relationshipName": "article",
+            "otherEntityField": "title"
+        }
+    ],
+    "changelogDate": "20191027112645",
+    "entityTableName": "part",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "indexer"
+    ],
+    "searchEngine": "elasticsearch"
+}

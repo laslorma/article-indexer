@@ -1,0 +1,11 @@
+id;news_api_calls;five_filter_api_calls;started;ended;duration;total_articles;indexing;articles_saved;error_message;had_error
+1;77714;37798;2019-10-26T22:03:38;2019-10-26T18:32:25;42422;24872;true;33025;../fake-data/blob/hipster.txt;false
+2;43445;49262;2019-10-27T05:22:26;2019-10-27T11:11:23;40520;46866;true;5630;../fake-data/blob/hipster.txt;true
+3;11881;76719;2019-10-27T08:38:30;2019-10-26T15:42:56;64921;74421;true;68103;../fake-data/blob/hipster.txt;true
+4;23750;96217;2019-10-27T01:51:25;2019-10-27T02:27:55;47771;28571;false;86859;../fake-data/blob/hipster.txt;true
+5;22359;43633;2019-10-26T12:20:42;2019-10-26T16:12:42;1215;97790;true;55600;../fake-data/blob/hipster.txt;false
+6;32268;89114;2019-10-27T10:25:14;2019-10-26T22:47:51;92464;99296;true;7379;../fake-data/blob/hipster.txt;false
+7;55385;69541;2019-10-26T12:11:57;2019-10-27T09:39:06;52309;16621;true;21680;../fake-data/blob/hipster.txt;true
+8;29449;45454;2019-10-26T11:33:45;2019-10-26T20:24:03;69692;58431;false;90115;../fake-data/blob/hipster.txt;true
+9;4544;91525;2019-10-27T04:43:09;2019-10-26T12:27:13;95041;5786;true;39452;../fake-data/blob/hipster.txt;false
+10;10675;62013;2019-10-27T03:24:23;2019-10-27T04:48:18;16967;18812;true;46369;../fake-data/blob/hipster.txt;false

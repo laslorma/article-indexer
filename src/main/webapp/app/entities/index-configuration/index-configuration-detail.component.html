@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="indexConfiguration">
+            <h2><span jhiTranslate="indexerApp.indexConfiguration.detail.title">Index Configuration</span> {{indexConfiguration.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.indexConfiguration.generateCorpuses">Generate Corpuses</span></dt>
+                <dd>
+                    <span>{{indexConfiguration.generateCorpuses}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexConfiguration.corpusesOutputPath">Corpuses Output Path</span></dt>
+                <dd>
+                    <span>{{indexConfiguration.corpusesOutputPath}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexConfiguration.newsApiKey">News Api Key</span></dt>
+                <dd>
+                    <span>{{indexConfiguration.newsApiKey}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.indexConfiguration.activateAllCategoriesAndCountries">Activate All Categories And Countries</span></dt>
+                <dd>
+                    <span>{{indexConfiguration.activateAllCategoriesAndCountries}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/index-configuration', indexConfiguration.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

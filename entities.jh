@@ -1,0 +1,115 @@
+application {
+  config {
+  	
+    packageName io.catwizard
+    baseName indexer
+    applicationType monolith
+    authenticationType jwt 
+    cacheProvider ehcache 
+    buildTool maven
+    clientFramework angularX
+    enableHibernateCache true
+    enableTranslation true
+    languages [es,en]
+    nativeLanguage es
+    prodDatabaseType mysql
+    searchEngine elasticsearch
+    serverPort 8085
+    skipUserManagement false
+  }
+  entities *
+}
+
+@paginate(pagination)
+@service(serviceClass)
+entity Article {
+  author String,
+  title String maxlength(1000),
+  description TextBlob,
+  url String maxlength(2000),
+  urlToImage String maxlength(2000),
+  publishedAt String,
+  category String,
+  content TextBlob,
+  countryCode String minlength(2) maxlength(2),
+  languageCode String minlength(2) maxlength(2),
+  sentiment String,
+  textReadability String,
+  numberOfParts Long
+}
+
+entity NewsApiCategory {
+  name String required minlength(3),
+  image ImageBlob,
+  active Boolean
+}
+
+@paginate(pagination)
+entity Paragraph {
+  content TextBlob,
+  originalCleanedContent TextBlob,
+  totalWords Integer,
+  header Boolean,
+  readability String
+}
+
+@paginate(pagination)
+entity Part {
+  text String maxlength(500),
+  posibleOptions String
+}
+
+entity Country {
+  code String required minlength(2) maxlength(2),
+  language String required minlength(2) maxlength(2),
+  name String,
+  active Boolean
+}
+
+@paginate(pagination)
+@service(serviceClass)
+entity IndexSession {
+  newsApiCalls Long,
+  fiveFilterApiCalls Long,
+  started ZonedDateTime,
+  ended ZonedDateTime,
+  duration Long,
+  totalArticles Long,
+  indexing Boolean,
+  articlesSaved Long,
+  errorMessage TextBlob,
+  hadError Boolean
+}
+
+@paginate(pagination)
+entity Source {
+  sourceId String,
+  name String,
+  description String,
+  url String,
+  category String,
+  language String,
+  country String,
+  active Boolean
+}
+
+entity IndexConfiguration {
+  generateCorpuses Boolean,
+  corpusesOutputPath String,
+  newsApiKey String,
+  activateAllCategoriesAndCountries Boolean
+}
+
+
+// RELATIONSHIPS
+relationship ManyToOne {
+  Article{newsApiCategory(name)} to NewsApiCategory{article},
+  Paragraph{article(title)} to Article{paragraph},
+  Article{source(name)} to Source{article},
+  Part{article(title)} to Article{part}
+
+}
+
+// Options
+search Article, Source, Paragraph, Part with elasticsearch
+filter Article

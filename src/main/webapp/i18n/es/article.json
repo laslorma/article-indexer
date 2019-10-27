@@ -1,0 +1,39 @@
+{
+  "indexerApp": {
+    "article": {
+      "home": {
+        "title": "Articles",
+        "createLabel": "Crear nuevo Article",
+        "createOrEditLabel": "Crear o editar Article",
+        "search": "Search for Article",
+        "notFound": "No Articles found"
+      },
+      "created": "Un nuevo Article ha sido creado con el identificador {{ param }}",
+      "updated": "Un Article ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Article ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Article {{ id }}?"
+      },
+      "detail": {
+        "title": "Article"
+      },
+      "author": "Author",
+      "title": "Title",
+      "description": "Description",
+      "url": "Url",
+      "urlToImage": "Url To Image",
+      "publishedAt": "Published At",
+      "category": "Category",
+      "content": "Content",
+      "countryCode": "Country Code",
+      "languageCode": "Language Code",
+      "sentiment": "Sentiment",
+      "textReadability": "Text Readability",
+      "numberOfParts": "Number Of Parts",
+      "newsApiCategory": "News Api Category",
+      "source": "Source",
+      "paragraph": "Paragraph",
+      "part": "Part"
+    }
+  }
+}

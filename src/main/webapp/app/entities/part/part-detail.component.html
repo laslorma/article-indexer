@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="part">
+            <h2><span jhiTranslate="indexerApp.part.detail.title">Part</span> {{part.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.part.text">Text</span></dt>
+                <dd>
+                    <span>{{part.text}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.part.posibleOptions">Posible Options</span></dt>
+                <dd>
+                    <span>{{part.posibleOptions}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.part.article">Article</span></dt>
+                <dd>
+                    <div *ngIf="part.article">
+                        <a [routerLink]="['/article', part.article?.id, 'view']">{{part.article?.title}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/part', part.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

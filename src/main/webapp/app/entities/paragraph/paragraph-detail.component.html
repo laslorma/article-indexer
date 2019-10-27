@@ -1,0 +1,49 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="paragraph">
+            <h2><span jhiTranslate="indexerApp.paragraph.detail.title">Paragraph</span> {{paragraph.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.paragraph.content">Content</span></dt>
+                <dd>
+                    <span>{{paragraph.content}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.paragraph.originalCleanedContent">Original Cleaned Content</span></dt>
+                <dd>
+                    <span>{{paragraph.originalCleanedContent}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.paragraph.totalWords">Total Words</span></dt>
+                <dd>
+                    <span>{{paragraph.totalWords}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.paragraph.header">Header</span></dt>
+                <dd>
+                    <span>{{paragraph.header}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.paragraph.readability">Readability</span></dt>
+                <dd>
+                    <span>{{paragraph.readability}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.paragraph.article">Article</span></dt>
+                <dd>
+                    <div *ngIf="paragraph.article">
+                        <a [routerLink]="['/article', paragraph.article?.id, 'view']">{{paragraph.article?.title}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/paragraph', paragraph.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

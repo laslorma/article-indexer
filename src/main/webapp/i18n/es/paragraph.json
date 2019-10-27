@@ -1,0 +1,28 @@
+{
+  "indexerApp": {
+    "paragraph": {
+      "home": {
+        "title": "Paragraphs",
+        "createLabel": "Crear nuevo Paragraph",
+        "createOrEditLabel": "Crear o editar Paragraph",
+        "search": "Search for Paragraph",
+        "notFound": "No Paragraphs found"
+      },
+      "created": "Un nuevo Paragraph ha sido creado con el identificador {{ param }}",
+      "updated": "Un Paragraph ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Paragraph ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Paragraph {{ id }}?"
+      },
+      "detail": {
+        "title": "Paragraph"
+      },
+      "content": "Content",
+      "originalCleanedContent": "Original Cleaned Content",
+      "totalWords": "Total Words",
+      "header": "Header",
+      "readability": "Readability",
+      "article": "Article"
+    }
+  }
+}
