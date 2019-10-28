@@ -1,2 +1,2 @@
-generate_corpuses,corpuses_output_path,news_api_key,activate_all_categories_and_countries
-FALSE,/Users/poolebu/Desktop/ErnestoLab/lingoStandCorpuses,9499d0cd82d64052837be9240bbe0125,FALSE
+id;generate_corpuses;corpuses_output_path;news_api_key;activate_all_categories_and_countries
+1;false;/Users/poolebu/Desktop/ErnestoLab/lingoStandCorpuses;9499d0cd82d64052837be9240bbe0125;false

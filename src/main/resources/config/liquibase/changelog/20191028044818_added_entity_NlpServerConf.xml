@@ -25,6 +25,11 @@
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
+
+    </changeSet>
+
+    <changeSet id="20191028044818-1-load-data" author="ernesto">
+
         <loadData
             file="config/liquibase/data/nlp_server_conf.csv"
             separator=";"

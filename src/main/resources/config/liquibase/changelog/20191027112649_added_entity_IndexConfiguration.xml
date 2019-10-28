@@ -19,21 +19,22 @@
             <column name="generate_corpuses" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <column name="corpuses_output_path" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="news_api_key" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="activate_all_categories_and_countries" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+
+
+    </changeSet>
+
+    <changeSet id="20191027112649-1-load-data" author="ernesto">
 
         <loadData
             file="config/liquibase/data/index_configuration.csv"
@@ -46,6 +47,7 @@
             <column name="activate_all_categories_and_countries" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
+
 
     </changeSet>
 
