@@ -1,0 +1,39 @@
+{
+    "name": "LingoToken",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "blankText",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lingoOrder",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "posTag",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lemma",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nerTag",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191028050857",
+    "entityTableName": "token",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

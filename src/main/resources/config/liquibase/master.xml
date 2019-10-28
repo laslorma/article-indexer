@@ -22,6 +22,8 @@
     <include file="config/liquibase/changelog/20191027112647_added_entity_IndexSession.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191027112648_added_entity_Source.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191027112649_added_entity_IndexConfiguration.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191028044818_added_entity_NlpServerConf.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191028050857_added_entity_LingoToken.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20191027112633_added_entity_constraints_Article.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191027112644_added_entity_constraints_Paragraph.xml" relativeToChangelogFile="false"/>

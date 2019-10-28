@@ -35,6 +35,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'index-configuration',
         loadChildren: () => import('./index-configuration/index-configuration.module').then(m => m.IndexerIndexConfigurationModule)
+      },
+      {
+        path: 'nlp-server-conf',
+        loadChildren: () => import('./nlp-server-conf/nlp-server-conf.module').then(m => m.IndexerNlpServerConfModule)
+      },
+      {
+        path: 'lingo-token',
+        loadChildren: () => import('./lingo-token/lingo-token.module').then(m => m.IndexerLingoTokenModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])

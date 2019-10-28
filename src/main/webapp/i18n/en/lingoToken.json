@@ -1,0 +1,28 @@
+{
+  "indexerApp": {
+    "lingoToken": {
+      "home": {
+        "title": "Lingo Tokens",
+        "createLabel": "Create a new Lingo Token",
+        "createOrEditLabel": "Create or edit a Lingo Token",
+        "search": "Search for Lingo Token",
+        "notFound": "No Lingo Tokens found"
+      },
+      "created": "A new Lingo Token is created with identifier {{ param }}",
+      "updated": "A Lingo Token is updated with identifier {{ param }}",
+      "deleted": "A Lingo Token is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lingo Token {{ id }}?"
+      },
+      "detail": {
+        "title": "Lingo Token"
+      },
+      "text": "Text",
+      "blankText": "Blank Text",
+      "lingoOrder": "Lingo Order",
+      "posTag": "Pos Tag",
+      "lemma": "Lemma",
+      "nerTag": "Ner Tag"
+    }
+  }
+}

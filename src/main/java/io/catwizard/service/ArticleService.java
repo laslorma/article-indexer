@@ -3,6 +3,8 @@ package io.catwizard.service;
 import io.catwizard.domain.Article;
 import io.catwizard.repository.ArticleRepository;
 import io.catwizard.repository.search.ArticleSearchRepository;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
@@ -28,9 +31,15 @@ public class ArticleService {
 
     private final ArticleSearchRepository articleSearchRepository;
 
-    public ArticleService(ArticleRepository articleRepository, ArticleSearchRepository articleSearchRepository) {
+    private final NlpFlaskPythonService nlpFlaskPythonService;
+
+    public static final String UNABLE_TO_RETRIEVE_FULL_TEXT_CONTENT = "[unable to retrieve full-text content]";
+
+
+    public ArticleService(ArticleRepository articleRepository, ArticleSearchRepository articleSearchRepository, NlpFlaskPythonService nlpFlaskPythonService) {
         this.articleRepository = articleRepository;
         this.articleSearchRepository = articleSearchRepository;
+        this.nlpFlaskPythonService = nlpFlaskPythonService;
     }
 
     /**
@@ -93,4 +102,34 @@ public class ArticleService {
     public Page<Article> search(String query, Pageable pageable) {
         log.debug("Request to search for a page of Articles for query {}", query);
         return articleSearchRepository.search(queryStringQuery(query), pageable);    }
+
+// ERNESTO
+
+    @Transactional(readOnly = true)
+    public List<Article> findAll() {
+        log.debug("Request to get all Articles");
+        return articleRepository.findAll();
+    }
+
+
+    public String parseTextOnly(String html) {
+
+        Document doc = Jsoup.parse(html);
+
+        return doc.body().text();
+    }
+
+
+    public void calculateReadability(Article article) {
+
+        if (article.getContent()!= null) {
+
+            String content = this.parseTextOnly(article.getContent());
+
+            String readability = nlpFlaskPythonService.calculateReadingDifficulty(content, article.getLanguageCode()).getReadability();
+
+            article.setTextReadability(readability);
+
+        }
+    }
 }

@@ -15,6 +15,8 @@
         "indexSession": "Index Session",
         "source": "Source",
         "indexConfiguration": "Index Configuration",
+        "nlpServerConf": "Nlp Server Conf",
+        "lingoToken": "Lingo Token",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

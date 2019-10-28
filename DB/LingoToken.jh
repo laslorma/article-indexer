@@ -1,0 +1,10 @@
+entity LingoToken(token){
+
+text String,
+blankText String,
+lingoOrder Integer,
+posTag String,
+lemma String,
+nerTag String
+
+}

@@ -1,0 +1,4 @@
+entity NlpServerConf {
+url String,
+port String
+}

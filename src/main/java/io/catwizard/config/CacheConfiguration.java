@@ -55,6 +55,8 @@ public class CacheConfiguration {
             createCache(cm, io.catwizard.domain.Source.class.getName());
             createCache(cm, io.catwizard.domain.Source.class.getName() + ".articles");
             createCache(cm, io.catwizard.domain.IndexConfiguration.class.getName());
+            createCache(cm, io.catwizard.domain.NlpServerConf.class.getName());
+            createCache(cm, io.catwizard.domain.LingoToken.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

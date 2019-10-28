@@ -1,0 +1,24 @@
+{
+  "indexerApp": {
+    "nlpServerConf": {
+      "home": {
+        "title": "Nlp Server Confs",
+        "createLabel": "Create a new Nlp Server Conf",
+        "createOrEditLabel": "Create or edit a Nlp Server Conf",
+        "search": "Search for Nlp Server Conf",
+        "notFound": "No Nlp Server Confs found"
+      },
+      "created": "A new Nlp Server Conf is created with identifier {{ param }}",
+      "updated": "A Nlp Server Conf is updated with identifier {{ param }}",
+      "deleted": "A Nlp Server Conf is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Nlp Server Conf {{ id }}?"
+      },
+      "detail": {
+        "title": "Nlp Server Conf"
+      },
+      "url": "Url",
+      "port": "Port"
+    }
+  }
+}
