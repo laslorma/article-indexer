@@ -1,0 +1,26 @@
+{
+  "indexerApp": {
+    "indexConfiguration": {
+      "home": {
+        "title": "Index Configurations",
+        "createLabel": "Crear nuevo Index Configuration",
+        "createOrEditLabel": "Crear o editar Index Configuration",
+        "search": "Search for Index Configuration",
+        "notFound": "No Index Configurations found"
+      },
+      "created": "Un nuevo Index Configuration ha sido creado con el identificador {{ param }}",
+      "updated": "Un Index Configuration ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Index Configuration ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Index Configuration {{ id }}?"
+      },
+      "detail": {
+        "title": "Index Configuration"
+      },
+      "generateCorpuses": "Generate Corpuses",
+      "corpusesOutputPath": "Corpuses Output Path",
+      "newsApiKey": "News Api Key",
+      "activateAllCategoriesAndCountries": "Activate All Categories And Countries"
+    }
+  }
+}

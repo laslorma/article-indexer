@@ -1,0 +1,87 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="article">
+            <h2><span jhiTranslate="indexerApp.article.detail.title">Article</span> {{article.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.article.author">Author</span></dt>
+                <dd>
+                    <span>{{article.author}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.title">Title</span></dt>
+                <dd>
+                    <span>{{article.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.description">Description</span></dt>
+                <dd>
+                    <span>{{article.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.url">Url</span></dt>
+                <dd>
+                    <span>{{article.url}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.urlToImage">Url To Image</span></dt>
+                <dd>
+                    <span>{{article.urlToImage}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.publishedAt">Published At</span></dt>
+                <dd>
+                    <span>{{article.publishedAt}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.category">Category</span></dt>
+                <dd>
+                    <span>{{article.category}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.content">Content</span></dt>
+                <dd>
+                    <span>{{article.content}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.countryCode">Country Code</span></dt>
+                <dd>
+                    <span>{{article.countryCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.languageCode">Language Code</span></dt>
+                <dd>
+                    <span>{{article.languageCode}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.sentiment">Sentiment</span></dt>
+                <dd>
+                    <span>{{article.sentiment}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.textReadability">Text Readability</span></dt>
+                <dd>
+                    <span>{{article.textReadability}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.numberOfParts">Number Of Parts</span></dt>
+                <dd>
+                    <span>{{article.numberOfParts}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.newsApiCategory">News Api Category</span></dt>
+                <dd>
+                    <div *ngIf="article.newsApiCategory">
+                        <a [routerLink]="['/news-api-category', article.newsApiCategory?.id, 'view']">{{article.newsApiCategory?.name}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.article.source">Source</span></dt>
+                <dd>
+                    <div *ngIf="article.source">
+                        <a [routerLink]="['/source', article.source?.id, 'view']">{{article.source?.name}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/article', article.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

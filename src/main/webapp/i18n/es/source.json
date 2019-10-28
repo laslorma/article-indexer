@@ -1,0 +1,31 @@
+{
+  "indexerApp": {
+    "source": {
+      "home": {
+        "title": "Sources",
+        "createLabel": "Crear nuevo Source",
+        "createOrEditLabel": "Crear o editar Source",
+        "search": "Search for Source",
+        "notFound": "No Sources found"
+      },
+      "created": "Un nuevo Source ha sido creado con el identificador {{ param }}",
+      "updated": "Un Source ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Source ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Source {{ id }}?"
+      },
+      "detail": {
+        "title": "Source"
+      },
+      "sourceId": "Source Id",
+      "name": "Name",
+      "description": "Description",
+      "url": "Url",
+      "category": "Category",
+      "language": "Language",
+      "country": "Country",
+      "active": "Active",
+      "article": "Article"
+    }
+  }
+}

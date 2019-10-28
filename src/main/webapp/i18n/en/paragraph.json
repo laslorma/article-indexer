@@ -1,0 +1,28 @@
+{
+  "indexerApp": {
+    "paragraph": {
+      "home": {
+        "title": "Paragraphs",
+        "createLabel": "Create a new Paragraph",
+        "createOrEditLabel": "Create or edit a Paragraph",
+        "search": "Search for Paragraph",
+        "notFound": "No Paragraphs found"
+      },
+      "created": "A new Paragraph is created with identifier {{ param }}",
+      "updated": "A Paragraph is updated with identifier {{ param }}",
+      "deleted": "A Paragraph is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Paragraph {{ id }}?"
+      },
+      "detail": {
+        "title": "Paragraph"
+      },
+      "content": "Content",
+      "originalCleanedContent": "Original Cleaned Content",
+      "totalWords": "Total Words",
+      "header": "Header",
+      "readability": "Readability",
+      "article": "Article"
+    }
+  }
+}

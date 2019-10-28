@@ -1,0 +1,32 @@
+{
+  "indexerApp": {
+    "indexSession": {
+      "home": {
+        "title": "Index Sessions",
+        "createLabel": "Crear nuevo Index Session",
+        "createOrEditLabel": "Crear o editar Index Session",
+        "search": "Search for Index Session",
+        "notFound": "No Index Sessions found"
+      },
+      "created": "Un nuevo Index Session ha sido creado con el identificador {{ param }}",
+      "updated": "Un Index Session ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Index Session ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Index Session {{ id }}?"
+      },
+      "detail": {
+        "title": "Index Session"
+      },
+      "newsApiCalls": "News Api Calls",
+      "fiveFilterApiCalls": "Five Filter Api Calls",
+      "started": "Started",
+      "ended": "Ended",
+      "duration": "Duration",
+      "totalArticles": "Total Articles",
+      "indexing": "Indexing",
+      "articlesSaved": "Articles Saved",
+      "errorMessage": "Error Message",
+      "hadError": "Had Error"
+    }
+  }
+}

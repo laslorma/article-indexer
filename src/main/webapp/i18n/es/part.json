@@ -1,0 +1,25 @@
+{
+  "indexerApp": {
+    "part": {
+      "home": {
+        "title": "Parts",
+        "createLabel": "Crear nuevo Part",
+        "createOrEditLabel": "Crear o editar Part",
+        "search": "Search for Part",
+        "notFound": "No Parts found"
+      },
+      "created": "Un nuevo Part ha sido creado con el identificador {{ param }}",
+      "updated": "Un Part ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Part ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Part {{ id }}?"
+      },
+      "detail": {
+        "title": "Part"
+      },
+      "text": "Text",
+      "posibleOptions": "Posible Options",
+      "article": "Article"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "indexerApp": {
+    "newsApiCategory": {
+      "home": {
+        "title": "News Api Categories",
+        "createLabel": "Crear nuevo News Api Category",
+        "createOrEditLabel": "Crear o editar News Api Category",
+        "search": "Search for News Api Category",
+        "notFound": "No News Api Categories found"
+      },
+      "created": "Un nuevo News Api Category ha sido creado con el identificador {{ param }}",
+      "updated": "Un News Api Category ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un News Api Category ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar News Api Category {{ id }}?"
+      },
+      "detail": {
+        "title": "News Api Category"
+      },
+      "name": "Name",
+      "image": "Image",
+      "active": "Active",
+      "article": "Article"
+    }
+  }
+}

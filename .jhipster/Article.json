@@ -1,0 +1,123 @@
+{
+    "name": "Article",
+    "fields": [
+        {
+            "fieldName": "author",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 1000
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "url",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2000
+        },
+        {
+            "fieldName": "urlToImage",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 2000
+        },
+        {
+            "fieldName": "publishedAt",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "category",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "countryCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 2,
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "languageCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": 2,
+            "fieldValidateRulesMaxlength": 2
+        },
+        {
+            "fieldName": "sentiment",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "textReadability",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "numberOfParts",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "newsApiCategory",
+            "otherEntityRelationshipName": "article",
+            "relationshipName": "newsApiCategory",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "source",
+            "otherEntityRelationshipName": "article",
+            "relationshipName": "source",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "paragraph",
+            "otherEntityRelationshipName": "article",
+            "relationshipName": "paragraph"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "part",
+            "otherEntityRelationshipName": "article",
+            "relationshipName": "part"
+        }
+    ],
+    "changelogDate": "20191027112633",
+    "entityTableName": "article",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": true,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "indexer"
+    ],
+    "searchEngine": "elasticsearch"
+}

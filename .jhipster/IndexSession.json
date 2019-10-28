@@ -1,0 +1,58 @@
+{
+    "name": "IndexSession",
+    "fields": [
+        {
+            "fieldName": "newsApiCalls",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "fiveFilterApiCalls",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "started",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "ended",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "totalArticles",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "indexing",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "articlesSaved",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "errorMessage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "hadError",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191027112647",
+    "entityTableName": "index_session",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "indexer"
+    ]
+}

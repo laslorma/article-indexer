@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="newsApiCategory">
+            <h2><span jhiTranslate="indexerApp.newsApiCategory.detail.title">News Api Category</span> {{newsApiCategory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="indexerApp.newsApiCategory.name">Name</span></dt>
+                <dd>
+                    <span>{{newsApiCategory.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.newsApiCategory.image">Image</span></dt>
+                <dd>
+                    <div *ngIf="newsApiCategory.image">
+                        <a (click)="openFile(newsApiCategory.imageContentType, newsApiCategory.image)">
+                            <img [src]="'data:' + newsApiCategory.imageContentType + ';base64,' + newsApiCategory.image" style="max-width: 100%;" alt="newsApiCategory image"/>
+                        </a>
+                        {{newsApiCategory.imageContentType}}, {{byteSize(newsApiCategory.image)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="indexerApp.newsApiCategory.active">Active</span></dt>
+                <dd>
+                    <span>{{newsApiCategory.active}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/news-api-category', newsApiCategory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

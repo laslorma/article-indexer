@@ -1,0 +1,33 @@
+{
+    "name": "IndexConfiguration",
+    "fields": [
+        {
+            "fieldName": "generateCorpuses",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "corpusesOutputPath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "newsApiKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activateAllCategoriesAndCountries",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20191027112649",
+    "entityTableName": "index_configuration",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "indexer"
+    ]
+}

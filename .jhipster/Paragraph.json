@@ -1,0 +1,48 @@
+{
+    "name": "Paragraph",
+    "fields": [
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "originalCleanedContent",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "totalWords",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "header",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "readability",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "article",
+            "otherEntityRelationshipName": "paragraph",
+            "relationshipName": "article",
+            "otherEntityField": "title"
+        }
+    ],
+    "changelogDate": "20191027112644",
+    "entityTableName": "paragraph",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "indexer"
+    ],
+    "searchEngine": "elasticsearch"
+}
