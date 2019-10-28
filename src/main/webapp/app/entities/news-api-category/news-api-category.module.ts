@@ -1,18 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  NewsApiCategoryComponent,
-  NewsApiCategoryDetailComponent,
-  NewsApiCategoryUpdateComponent,
-  NewsApiCategoryDeletePopupComponent,
-  NewsApiCategoryDeleteDialogComponent,
-  newsApiCategoryRoute,
-  newsApiCategoryPopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { NewsApiCategoryComponent } from './news-api-category.component';
+import { NewsApiCategoryDetailComponent } from './news-api-category-detail.component';
+import { NewsApiCategoryUpdateComponent } from './news-api-category-update.component';
+import { NewsApiCategoryDeletePopupComponent, NewsApiCategoryDeleteDialogComponent } from './news-api-category-delete-dialog.component';
+import { newsApiCategoryRoute, newsApiCategoryPopupRoute } from './news-api-category.route';
 
 const ENTITY_STATES = [...newsApiCategoryRoute, ...newsApiCategoryPopupRoute];
 
@@ -25,21 +19,6 @@ const ENTITY_STATES = [...newsApiCategoryRoute, ...newsApiCategoryPopupRoute];
     NewsApiCategoryDeleteDialogComponent,
     NewsApiCategoryDeletePopupComponent
   ],
-  entryComponents: [
-    NewsApiCategoryComponent,
-    NewsApiCategoryUpdateComponent,
-    NewsApiCategoryDeleteDialogComponent,
-    NewsApiCategoryDeletePopupComponent
-  ],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [NewsApiCategoryDeleteDialogComponent]
 })
-export class IndexerNewsApiCategoryModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerNewsApiCategoryModule {}

@@ -1,18 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  IndexSessionComponent,
-  IndexSessionDetailComponent,
-  IndexSessionUpdateComponent,
-  IndexSessionDeletePopupComponent,
-  IndexSessionDeleteDialogComponent,
-  indexSessionRoute,
-  indexSessionPopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { IndexSessionComponent } from './index-session.component';
+import { IndexSessionDetailComponent } from './index-session-detail.component';
+import { IndexSessionUpdateComponent } from './index-session-update.component';
+import { IndexSessionDeletePopupComponent, IndexSessionDeleteDialogComponent } from './index-session-delete-dialog.component';
+import { indexSessionRoute, indexSessionPopupRoute } from './index-session.route';
 
 const ENTITY_STATES = [...indexSessionRoute, ...indexSessionPopupRoute];
 
@@ -25,21 +19,6 @@ const ENTITY_STATES = [...indexSessionRoute, ...indexSessionPopupRoute];
     IndexSessionDeleteDialogComponent,
     IndexSessionDeletePopupComponent
   ],
-  entryComponents: [
-    IndexSessionComponent,
-    IndexSessionUpdateComponent,
-    IndexSessionDeleteDialogComponent,
-    IndexSessionDeletePopupComponent
-  ],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [IndexSessionDeleteDialogComponent]
 })
-export class IndexerIndexSessionModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerIndexSessionModule {}

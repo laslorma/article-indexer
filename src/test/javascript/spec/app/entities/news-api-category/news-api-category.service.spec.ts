@@ -1,8 +1,5 @@
-/* tslint:disable max-line-length */
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { of } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 import { NewsApiCategoryService } from 'app/entities/news-api-category/news-api-category.service';
 import { INewsApiCategory, NewsApiCategory } from 'app/shared/model/news-api-category.model';
@@ -27,7 +24,7 @@ describe('Service Tests', () => {
     });
 
     describe('Service methods', () => {
-      it('should find an element', async () => {
+      it('should find an element', () => {
         const returnedFromService = Object.assign({}, elemDefault);
         service
           .find(123)
@@ -39,7 +36,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: elemDefault });
       });
 
-      it('should create a NewsApiCategory', async () => {
+      it('should create a NewsApiCategory', () => {
         const returnedFromService = Object.assign(
           {
             id: 0
@@ -56,7 +53,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: expected });
       });
 
-      it('should update a NewsApiCategory', async () => {
+      it('should update a NewsApiCategory', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
@@ -76,7 +73,7 @@ describe('Service Tests', () => {
         expect(expectedResult).toMatchObject({ body: expected });
       });
 
-      it('should return a list of NewsApiCategory', async () => {
+      it('should return a list of NewsApiCategory', () => {
         const returnedFromService = Object.assign(
           {
             name: 'BBBBBB',
@@ -99,8 +96,8 @@ describe('Service Tests', () => {
         expect(expectedResult).toContainEqual(expected);
       });
 
-      it('should delete a NewsApiCategory', async () => {
-        const rxPromise = service.delete(123).subscribe(resp => (expectedResult = resp.ok));
+      it('should delete a NewsApiCategory', () => {
+        service.delete(123).subscribe(resp => (expectedResult = resp.ok));
 
         const req = httpMock.expectOne({ method: 'DELETE' });
         req.flush({ status: 200 });

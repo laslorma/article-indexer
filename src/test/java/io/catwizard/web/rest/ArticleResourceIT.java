@@ -254,18 +254,18 @@ public class ArticleResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
-            .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR.toString())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
+            .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR)))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL.toString())))
-            .andExpect(jsonPath("$.[*].urlToImage").value(hasItem(DEFAULT_URL_TO_IMAGE.toString())))
-            .andExpect(jsonPath("$.[*].publishedAt").value(hasItem(DEFAULT_PUBLISHED_AT.toString())))
-            .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY.toString())))
+            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL)))
+            .andExpect(jsonPath("$.[*].urlToImage").value(hasItem(DEFAULT_URL_TO_IMAGE)))
+            .andExpect(jsonPath("$.[*].publishedAt").value(hasItem(DEFAULT_PUBLISHED_AT)))
+            .andExpect(jsonPath("$.[*].category").value(hasItem(DEFAULT_CATEGORY)))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
-            .andExpect(jsonPath("$.[*].countryCode").value(hasItem(DEFAULT_COUNTRY_CODE.toString())))
-            .andExpect(jsonPath("$.[*].languageCode").value(hasItem(DEFAULT_LANGUAGE_CODE.toString())))
-            .andExpect(jsonPath("$.[*].sentiment").value(hasItem(DEFAULT_SENTIMENT.toString())))
-            .andExpect(jsonPath("$.[*].textReadability").value(hasItem(DEFAULT_TEXT_READABILITY.toString())))
+            .andExpect(jsonPath("$.[*].countryCode").value(hasItem(DEFAULT_COUNTRY_CODE)))
+            .andExpect(jsonPath("$.[*].languageCode").value(hasItem(DEFAULT_LANGUAGE_CODE)))
+            .andExpect(jsonPath("$.[*].sentiment").value(hasItem(DEFAULT_SENTIMENT)))
+            .andExpect(jsonPath("$.[*].textReadability").value(hasItem(DEFAULT_TEXT_READABILITY)))
             .andExpect(jsonPath("$.[*].numberOfParts").value(hasItem(DEFAULT_NUMBER_OF_PARTS.intValue())));
     }
     
@@ -280,18 +280,18 @@ public class ArticleResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(article.getId().intValue()))
-            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR.toString()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
+            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.url").value(DEFAULT_URL.toString()))
-            .andExpect(jsonPath("$.urlToImage").value(DEFAULT_URL_TO_IMAGE.toString()))
-            .andExpect(jsonPath("$.publishedAt").value(DEFAULT_PUBLISHED_AT.toString()))
-            .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY.toString()))
+            .andExpect(jsonPath("$.url").value(DEFAULT_URL))
+            .andExpect(jsonPath("$.urlToImage").value(DEFAULT_URL_TO_IMAGE))
+            .andExpect(jsonPath("$.publishedAt").value(DEFAULT_PUBLISHED_AT))
+            .andExpect(jsonPath("$.category").value(DEFAULT_CATEGORY))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
-            .andExpect(jsonPath("$.countryCode").value(DEFAULT_COUNTRY_CODE.toString()))
-            .andExpect(jsonPath("$.languageCode").value(DEFAULT_LANGUAGE_CODE.toString()))
-            .andExpect(jsonPath("$.sentiment").value(DEFAULT_SENTIMENT.toString()))
-            .andExpect(jsonPath("$.textReadability").value(DEFAULT_TEXT_READABILITY.toString()))
+            .andExpect(jsonPath("$.countryCode").value(DEFAULT_COUNTRY_CODE))
+            .andExpect(jsonPath("$.languageCode").value(DEFAULT_LANGUAGE_CODE))
+            .andExpect(jsonPath("$.sentiment").value(DEFAULT_SENTIMENT))
+            .andExpect(jsonPath("$.textReadability").value(DEFAULT_TEXT_READABILITY))
             .andExpect(jsonPath("$.numberOfParts").value(DEFAULT_NUMBER_OF_PARTS.intValue()));
     }
 
@@ -306,6 +306,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where author equals to UPDATED_AUTHOR
         defaultArticleShouldNotBeFound("author.equals=" + UPDATED_AUTHOR);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByAuthorIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where author not equals to DEFAULT_AUTHOR
+        defaultArticleShouldNotBeFound("author.notEquals=" + DEFAULT_AUTHOR);
+
+        // Get all the articleList where author not equals to UPDATED_AUTHOR
+        defaultArticleShouldBeFound("author.notEquals=" + UPDATED_AUTHOR);
     }
 
     @Test
@@ -333,6 +346,32 @@ public class ArticleResourceIT {
         // Get all the articleList where author is null
         defaultArticleShouldNotBeFound("author.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByAuthorContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where author contains DEFAULT_AUTHOR
+        defaultArticleShouldBeFound("author.contains=" + DEFAULT_AUTHOR);
+
+        // Get all the articleList where author contains UPDATED_AUTHOR
+        defaultArticleShouldNotBeFound("author.contains=" + UPDATED_AUTHOR);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByAuthorNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where author does not contain DEFAULT_AUTHOR
+        defaultArticleShouldNotBeFound("author.doesNotContain=" + DEFAULT_AUTHOR);
+
+        // Get all the articleList where author does not contain UPDATED_AUTHOR
+        defaultArticleShouldBeFound("author.doesNotContain=" + UPDATED_AUTHOR);
+    }
+
 
     @Test
     @Transactional
@@ -345,6 +384,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where title equals to UPDATED_TITLE
         defaultArticleShouldNotBeFound("title.equals=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByTitleIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where title not equals to DEFAULT_TITLE
+        defaultArticleShouldNotBeFound("title.notEquals=" + DEFAULT_TITLE);
+
+        // Get all the articleList where title not equals to UPDATED_TITLE
+        defaultArticleShouldBeFound("title.notEquals=" + UPDATED_TITLE);
     }
 
     @Test
@@ -372,6 +424,32 @@ public class ArticleResourceIT {
         // Get all the articleList where title is null
         defaultArticleShouldNotBeFound("title.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByTitleContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where title contains DEFAULT_TITLE
+        defaultArticleShouldBeFound("title.contains=" + DEFAULT_TITLE);
+
+        // Get all the articleList where title contains UPDATED_TITLE
+        defaultArticleShouldNotBeFound("title.contains=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByTitleNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where title does not contain DEFAULT_TITLE
+        defaultArticleShouldNotBeFound("title.doesNotContain=" + DEFAULT_TITLE);
+
+        // Get all the articleList where title does not contain UPDATED_TITLE
+        defaultArticleShouldBeFound("title.doesNotContain=" + UPDATED_TITLE);
+    }
+
 
     @Test
     @Transactional
@@ -384,6 +462,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where url equals to UPDATED_URL
         defaultArticleShouldNotBeFound("url.equals=" + UPDATED_URL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByUrlIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where url not equals to DEFAULT_URL
+        defaultArticleShouldNotBeFound("url.notEquals=" + DEFAULT_URL);
+
+        // Get all the articleList where url not equals to UPDATED_URL
+        defaultArticleShouldBeFound("url.notEquals=" + UPDATED_URL);
     }
 
     @Test
@@ -411,6 +502,32 @@ public class ArticleResourceIT {
         // Get all the articleList where url is null
         defaultArticleShouldNotBeFound("url.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByUrlContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where url contains DEFAULT_URL
+        defaultArticleShouldBeFound("url.contains=" + DEFAULT_URL);
+
+        // Get all the articleList where url contains UPDATED_URL
+        defaultArticleShouldNotBeFound("url.contains=" + UPDATED_URL);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByUrlNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where url does not contain DEFAULT_URL
+        defaultArticleShouldNotBeFound("url.doesNotContain=" + DEFAULT_URL);
+
+        // Get all the articleList where url does not contain UPDATED_URL
+        defaultArticleShouldBeFound("url.doesNotContain=" + UPDATED_URL);
+    }
+
 
     @Test
     @Transactional
@@ -423,6 +540,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where urlToImage equals to UPDATED_URL_TO_IMAGE
         defaultArticleShouldNotBeFound("urlToImage.equals=" + UPDATED_URL_TO_IMAGE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByUrlToImageIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where urlToImage not equals to DEFAULT_URL_TO_IMAGE
+        defaultArticleShouldNotBeFound("urlToImage.notEquals=" + DEFAULT_URL_TO_IMAGE);
+
+        // Get all the articleList where urlToImage not equals to UPDATED_URL_TO_IMAGE
+        defaultArticleShouldBeFound("urlToImage.notEquals=" + UPDATED_URL_TO_IMAGE);
     }
 
     @Test
@@ -450,6 +580,32 @@ public class ArticleResourceIT {
         // Get all the articleList where urlToImage is null
         defaultArticleShouldNotBeFound("urlToImage.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByUrlToImageContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where urlToImage contains DEFAULT_URL_TO_IMAGE
+        defaultArticleShouldBeFound("urlToImage.contains=" + DEFAULT_URL_TO_IMAGE);
+
+        // Get all the articleList where urlToImage contains UPDATED_URL_TO_IMAGE
+        defaultArticleShouldNotBeFound("urlToImage.contains=" + UPDATED_URL_TO_IMAGE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByUrlToImageNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where urlToImage does not contain DEFAULT_URL_TO_IMAGE
+        defaultArticleShouldNotBeFound("urlToImage.doesNotContain=" + DEFAULT_URL_TO_IMAGE);
+
+        // Get all the articleList where urlToImage does not contain UPDATED_URL_TO_IMAGE
+        defaultArticleShouldBeFound("urlToImage.doesNotContain=" + UPDATED_URL_TO_IMAGE);
+    }
+
 
     @Test
     @Transactional
@@ -462,6 +618,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where publishedAt equals to UPDATED_PUBLISHED_AT
         defaultArticleShouldNotBeFound("publishedAt.equals=" + UPDATED_PUBLISHED_AT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByPublishedAtIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where publishedAt not equals to DEFAULT_PUBLISHED_AT
+        defaultArticleShouldNotBeFound("publishedAt.notEquals=" + DEFAULT_PUBLISHED_AT);
+
+        // Get all the articleList where publishedAt not equals to UPDATED_PUBLISHED_AT
+        defaultArticleShouldBeFound("publishedAt.notEquals=" + UPDATED_PUBLISHED_AT);
     }
 
     @Test
@@ -489,6 +658,32 @@ public class ArticleResourceIT {
         // Get all the articleList where publishedAt is null
         defaultArticleShouldNotBeFound("publishedAt.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByPublishedAtContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where publishedAt contains DEFAULT_PUBLISHED_AT
+        defaultArticleShouldBeFound("publishedAt.contains=" + DEFAULT_PUBLISHED_AT);
+
+        // Get all the articleList where publishedAt contains UPDATED_PUBLISHED_AT
+        defaultArticleShouldNotBeFound("publishedAt.contains=" + UPDATED_PUBLISHED_AT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByPublishedAtNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where publishedAt does not contain DEFAULT_PUBLISHED_AT
+        defaultArticleShouldNotBeFound("publishedAt.doesNotContain=" + DEFAULT_PUBLISHED_AT);
+
+        // Get all the articleList where publishedAt does not contain UPDATED_PUBLISHED_AT
+        defaultArticleShouldBeFound("publishedAt.doesNotContain=" + UPDATED_PUBLISHED_AT);
+    }
+
 
     @Test
     @Transactional
@@ -501,6 +696,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where category equals to UPDATED_CATEGORY
         defaultArticleShouldNotBeFound("category.equals=" + UPDATED_CATEGORY);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByCategoryIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where category not equals to DEFAULT_CATEGORY
+        defaultArticleShouldNotBeFound("category.notEquals=" + DEFAULT_CATEGORY);
+
+        // Get all the articleList where category not equals to UPDATED_CATEGORY
+        defaultArticleShouldBeFound("category.notEquals=" + UPDATED_CATEGORY);
     }
 
     @Test
@@ -528,6 +736,32 @@ public class ArticleResourceIT {
         // Get all the articleList where category is null
         defaultArticleShouldNotBeFound("category.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByCategoryContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where category contains DEFAULT_CATEGORY
+        defaultArticleShouldBeFound("category.contains=" + DEFAULT_CATEGORY);
+
+        // Get all the articleList where category contains UPDATED_CATEGORY
+        defaultArticleShouldNotBeFound("category.contains=" + UPDATED_CATEGORY);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByCategoryNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where category does not contain DEFAULT_CATEGORY
+        defaultArticleShouldNotBeFound("category.doesNotContain=" + DEFAULT_CATEGORY);
+
+        // Get all the articleList where category does not contain UPDATED_CATEGORY
+        defaultArticleShouldBeFound("category.doesNotContain=" + UPDATED_CATEGORY);
+    }
+
 
     @Test
     @Transactional
@@ -540,6 +774,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where countryCode equals to UPDATED_COUNTRY_CODE
         defaultArticleShouldNotBeFound("countryCode.equals=" + UPDATED_COUNTRY_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByCountryCodeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where countryCode not equals to DEFAULT_COUNTRY_CODE
+        defaultArticleShouldNotBeFound("countryCode.notEquals=" + DEFAULT_COUNTRY_CODE);
+
+        // Get all the articleList where countryCode not equals to UPDATED_COUNTRY_CODE
+        defaultArticleShouldBeFound("countryCode.notEquals=" + UPDATED_COUNTRY_CODE);
     }
 
     @Test
@@ -567,6 +814,32 @@ public class ArticleResourceIT {
         // Get all the articleList where countryCode is null
         defaultArticleShouldNotBeFound("countryCode.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByCountryCodeContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where countryCode contains DEFAULT_COUNTRY_CODE
+        defaultArticleShouldBeFound("countryCode.contains=" + DEFAULT_COUNTRY_CODE);
+
+        // Get all the articleList where countryCode contains UPDATED_COUNTRY_CODE
+        defaultArticleShouldNotBeFound("countryCode.contains=" + UPDATED_COUNTRY_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByCountryCodeNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where countryCode does not contain DEFAULT_COUNTRY_CODE
+        defaultArticleShouldNotBeFound("countryCode.doesNotContain=" + DEFAULT_COUNTRY_CODE);
+
+        // Get all the articleList where countryCode does not contain UPDATED_COUNTRY_CODE
+        defaultArticleShouldBeFound("countryCode.doesNotContain=" + UPDATED_COUNTRY_CODE);
+    }
+
 
     @Test
     @Transactional
@@ -579,6 +852,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where languageCode equals to UPDATED_LANGUAGE_CODE
         defaultArticleShouldNotBeFound("languageCode.equals=" + UPDATED_LANGUAGE_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByLanguageCodeIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where languageCode not equals to DEFAULT_LANGUAGE_CODE
+        defaultArticleShouldNotBeFound("languageCode.notEquals=" + DEFAULT_LANGUAGE_CODE);
+
+        // Get all the articleList where languageCode not equals to UPDATED_LANGUAGE_CODE
+        defaultArticleShouldBeFound("languageCode.notEquals=" + UPDATED_LANGUAGE_CODE);
     }
 
     @Test
@@ -606,6 +892,32 @@ public class ArticleResourceIT {
         // Get all the articleList where languageCode is null
         defaultArticleShouldNotBeFound("languageCode.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByLanguageCodeContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where languageCode contains DEFAULT_LANGUAGE_CODE
+        defaultArticleShouldBeFound("languageCode.contains=" + DEFAULT_LANGUAGE_CODE);
+
+        // Get all the articleList where languageCode contains UPDATED_LANGUAGE_CODE
+        defaultArticleShouldNotBeFound("languageCode.contains=" + UPDATED_LANGUAGE_CODE);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByLanguageCodeNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where languageCode does not contain DEFAULT_LANGUAGE_CODE
+        defaultArticleShouldNotBeFound("languageCode.doesNotContain=" + DEFAULT_LANGUAGE_CODE);
+
+        // Get all the articleList where languageCode does not contain UPDATED_LANGUAGE_CODE
+        defaultArticleShouldBeFound("languageCode.doesNotContain=" + UPDATED_LANGUAGE_CODE);
+    }
+
 
     @Test
     @Transactional
@@ -618,6 +930,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where sentiment equals to UPDATED_SENTIMENT
         defaultArticleShouldNotBeFound("sentiment.equals=" + UPDATED_SENTIMENT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesBySentimentIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where sentiment not equals to DEFAULT_SENTIMENT
+        defaultArticleShouldNotBeFound("sentiment.notEquals=" + DEFAULT_SENTIMENT);
+
+        // Get all the articleList where sentiment not equals to UPDATED_SENTIMENT
+        defaultArticleShouldBeFound("sentiment.notEquals=" + UPDATED_SENTIMENT);
     }
 
     @Test
@@ -645,6 +970,32 @@ public class ArticleResourceIT {
         // Get all the articleList where sentiment is null
         defaultArticleShouldNotBeFound("sentiment.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesBySentimentContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where sentiment contains DEFAULT_SENTIMENT
+        defaultArticleShouldBeFound("sentiment.contains=" + DEFAULT_SENTIMENT);
+
+        // Get all the articleList where sentiment contains UPDATED_SENTIMENT
+        defaultArticleShouldNotBeFound("sentiment.contains=" + UPDATED_SENTIMENT);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesBySentimentNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where sentiment does not contain DEFAULT_SENTIMENT
+        defaultArticleShouldNotBeFound("sentiment.doesNotContain=" + DEFAULT_SENTIMENT);
+
+        // Get all the articleList where sentiment does not contain UPDATED_SENTIMENT
+        defaultArticleShouldBeFound("sentiment.doesNotContain=" + UPDATED_SENTIMENT);
+    }
+
 
     @Test
     @Transactional
@@ -657,6 +1008,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where textReadability equals to UPDATED_TEXT_READABILITY
         defaultArticleShouldNotBeFound("textReadability.equals=" + UPDATED_TEXT_READABILITY);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByTextReadabilityIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where textReadability not equals to DEFAULT_TEXT_READABILITY
+        defaultArticleShouldNotBeFound("textReadability.notEquals=" + DEFAULT_TEXT_READABILITY);
+
+        // Get all the articleList where textReadability not equals to UPDATED_TEXT_READABILITY
+        defaultArticleShouldBeFound("textReadability.notEquals=" + UPDATED_TEXT_READABILITY);
     }
 
     @Test
@@ -684,6 +1048,32 @@ public class ArticleResourceIT {
         // Get all the articleList where textReadability is null
         defaultArticleShouldNotBeFound("textReadability.specified=false");
     }
+                @Test
+    @Transactional
+    public void getAllArticlesByTextReadabilityContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where textReadability contains DEFAULT_TEXT_READABILITY
+        defaultArticleShouldBeFound("textReadability.contains=" + DEFAULT_TEXT_READABILITY);
+
+        // Get all the articleList where textReadability contains UPDATED_TEXT_READABILITY
+        defaultArticleShouldNotBeFound("textReadability.contains=" + UPDATED_TEXT_READABILITY);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByTextReadabilityNotContainsSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where textReadability does not contain DEFAULT_TEXT_READABILITY
+        defaultArticleShouldNotBeFound("textReadability.doesNotContain=" + DEFAULT_TEXT_READABILITY);
+
+        // Get all the articleList where textReadability does not contain UPDATED_TEXT_READABILITY
+        defaultArticleShouldBeFound("textReadability.doesNotContain=" + UPDATED_TEXT_READABILITY);
+    }
+
 
     @Test
     @Transactional
@@ -696,6 +1086,19 @@ public class ArticleResourceIT {
 
         // Get all the articleList where numberOfParts equals to UPDATED_NUMBER_OF_PARTS
         defaultArticleShouldNotBeFound("numberOfParts.equals=" + UPDATED_NUMBER_OF_PARTS);
+    }
+
+    @Test
+    @Transactional
+    public void getAllArticlesByNumberOfPartsIsNotEqualToSomething() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+
+        // Get all the articleList where numberOfParts not equals to DEFAULT_NUMBER_OF_PARTS
+        defaultArticleShouldNotBeFound("numberOfParts.notEquals=" + DEFAULT_NUMBER_OF_PARTS);
+
+        // Get all the articleList where numberOfParts not equals to UPDATED_NUMBER_OF_PARTS
+        defaultArticleShouldBeFound("numberOfParts.notEquals=" + UPDATED_NUMBER_OF_PARTS);
     }
 
     @Test

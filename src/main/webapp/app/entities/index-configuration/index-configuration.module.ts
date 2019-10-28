@@ -1,18 +1,15 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { IndexConfigurationComponent } from './index-configuration.component';
+import { IndexConfigurationDetailComponent } from './index-configuration-detail.component';
+import { IndexConfigurationUpdateComponent } from './index-configuration-update.component';
 import {
-  IndexConfigurationComponent,
-  IndexConfigurationDetailComponent,
-  IndexConfigurationUpdateComponent,
   IndexConfigurationDeletePopupComponent,
-  IndexConfigurationDeleteDialogComponent,
-  indexConfigurationRoute,
-  indexConfigurationPopupRoute
-} from './';
+  IndexConfigurationDeleteDialogComponent
+} from './index-configuration-delete-dialog.component';
+import { indexConfigurationRoute, indexConfigurationPopupRoute } from './index-configuration.route';
 
 const ENTITY_STATES = [...indexConfigurationRoute, ...indexConfigurationPopupRoute];
 
@@ -25,21 +22,6 @@ const ENTITY_STATES = [...indexConfigurationRoute, ...indexConfigurationPopupRou
     IndexConfigurationDeleteDialogComponent,
     IndexConfigurationDeletePopupComponent
   ],
-  entryComponents: [
-    IndexConfigurationComponent,
-    IndexConfigurationUpdateComponent,
-    IndexConfigurationDeleteDialogComponent,
-    IndexConfigurationDeletePopupComponent
-  ],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [IndexConfigurationDeleteDialogComponent]
 })
-export class IndexerIndexConfigurationModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerIndexConfigurationModule {}

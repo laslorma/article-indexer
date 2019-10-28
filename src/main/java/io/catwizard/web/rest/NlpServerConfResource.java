@@ -141,5 +141,4 @@ public class NlpServerConfResource {
             .stream(nlpServerConfSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-
 }

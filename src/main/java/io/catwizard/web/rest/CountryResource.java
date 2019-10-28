@@ -142,5 +142,4 @@ public class CountryResource {
             .stream(countrySearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-
 }

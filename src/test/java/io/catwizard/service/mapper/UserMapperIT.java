@@ -1,6 +1,5 @@
 package io.catwizard.service.mapper;
 
-
 import io.catwizard.IndexerApp;
 import io.catwizard.domain.User;
 import io.catwizard.service.dto.UserDTO;

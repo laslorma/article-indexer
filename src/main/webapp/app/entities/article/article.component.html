@@ -8,6 +8,7 @@
             </span>
         </button>
     </h2>
+    <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-12">
@@ -29,26 +30,26 @@
         <span jhiTranslate="indexerApp.article.home.notFound">No articles found</span>
     </div>
     <div class="table-responsive" *ngIf="articles?.length > 0">
-        <table class="table table-striped">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="author"><span jhiTranslate="indexerApp.article.author">Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span jhiTranslate="indexerApp.article.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span jhiTranslate="indexerApp.article.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="url"><span jhiTranslate="indexerApp.article.url">Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="urlToImage"><span jhiTranslate="indexerApp.article.urlToImage">Url To Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="publishedAt"><span jhiTranslate="indexerApp.article.publishedAt">Published At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="category"><span jhiTranslate="indexerApp.article.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="content"><span jhiTranslate="indexerApp.article.content">Content</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="countryCode"><span jhiTranslate="indexerApp.article.countryCode">Country Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="languageCode"><span jhiTranslate="indexerApp.article.languageCode">Language Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="sentiment"><span jhiTranslate="indexerApp.article.sentiment">Sentiment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="textReadability"><span jhiTranslate="indexerApp.article.textReadability">Text Readability</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="numberOfParts"><span jhiTranslate="indexerApp.article.numberOfParts">Number Of Parts</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="newsApiCategory.name"><span jhiTranslate="indexerApp.article.newsApiCategory">News Api Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="source.name"><span jhiTranslate="indexerApp.article.source">Source</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+            <th scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="author"><span jhiTranslate="indexerApp.article.author">Author</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="title"><span jhiTranslate="indexerApp.article.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="description"><span jhiTranslate="indexerApp.article.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="url"><span jhiTranslate="indexerApp.article.url">Url</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="urlToImage"><span jhiTranslate="indexerApp.article.urlToImage">Url To Image</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="publishedAt"><span jhiTranslate="indexerApp.article.publishedAt">Published At</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="category"><span jhiTranslate="indexerApp.article.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="content"><span jhiTranslate="indexerApp.article.content">Content</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="countryCode"><span jhiTranslate="indexerApp.article.countryCode">Country Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="languageCode"><span jhiTranslate="indexerApp.article.languageCode">Language Code</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="sentiment"><span jhiTranslate="indexerApp.article.sentiment">Sentiment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="textReadability"><span jhiTranslate="indexerApp.article.textReadability">Text Readability</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="numberOfParts"><span jhiTranslate="indexerApp.article.numberOfParts">Number Of Parts</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="newsApiCategory.name"><span jhiTranslate="indexerApp.article.newsApiCategory">News Api Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"  jhiSortBy="source.name"><span jhiTranslate="indexerApp.article.source">Source</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -107,7 +108,7 @@
     </div>
     <div [hidden]="articles?.length === 0">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
             <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>

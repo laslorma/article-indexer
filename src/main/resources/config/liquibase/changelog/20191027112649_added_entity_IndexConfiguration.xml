@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity IndexConfiguration.
@@ -19,22 +19,17 @@
             <column name="generate_corpuses" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <column name="corpuses_output_path" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="news_api_key" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="activate_all_categories_and_countries" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
     </changeSet>
 
     <changeSet id="20191027112649-1-relations" author="jhipster">

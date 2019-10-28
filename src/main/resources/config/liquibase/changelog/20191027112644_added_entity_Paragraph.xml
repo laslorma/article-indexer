@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Paragraph.
@@ -19,30 +19,23 @@
             <column name="content" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-
             <column name="original_cleaned_content" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-
             <column name="total_words" type="integer">
                 <constraints nullable="true" />
             </column>
-
             <column name="header" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <column name="readability" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="article_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
     </changeSet>
 
     <changeSet id="20191027112644-1-relations" author="jhipster">

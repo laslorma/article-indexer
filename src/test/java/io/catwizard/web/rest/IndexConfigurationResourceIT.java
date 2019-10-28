@@ -184,8 +184,8 @@ public class IndexConfigurationResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(indexConfiguration.getId().intValue())))
             .andExpect(jsonPath("$.[*].generateCorpuses").value(hasItem(DEFAULT_GENERATE_CORPUSES.booleanValue())))
-            .andExpect(jsonPath("$.[*].corpusesOutputPath").value(hasItem(DEFAULT_CORPUSES_OUTPUT_PATH.toString())))
-            .andExpect(jsonPath("$.[*].newsApiKey").value(hasItem(DEFAULT_NEWS_API_KEY.toString())))
+            .andExpect(jsonPath("$.[*].corpusesOutputPath").value(hasItem(DEFAULT_CORPUSES_OUTPUT_PATH)))
+            .andExpect(jsonPath("$.[*].newsApiKey").value(hasItem(DEFAULT_NEWS_API_KEY)))
             .andExpect(jsonPath("$.[*].activateAllCategoriesAndCountries").value(hasItem(DEFAULT_ACTIVATE_ALL_CATEGORIES_AND_COUNTRIES.booleanValue())));
     }
     
@@ -201,8 +201,8 @@ public class IndexConfigurationResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(indexConfiguration.getId().intValue()))
             .andExpect(jsonPath("$.generateCorpuses").value(DEFAULT_GENERATE_CORPUSES.booleanValue()))
-            .andExpect(jsonPath("$.corpusesOutputPath").value(DEFAULT_CORPUSES_OUTPUT_PATH.toString()))
-            .andExpect(jsonPath("$.newsApiKey").value(DEFAULT_NEWS_API_KEY.toString()))
+            .andExpect(jsonPath("$.corpusesOutputPath").value(DEFAULT_CORPUSES_OUTPUT_PATH))
+            .andExpect(jsonPath("$.newsApiKey").value(DEFAULT_NEWS_API_KEY))
             .andExpect(jsonPath("$.activateAllCategoriesAndCountries").value(DEFAULT_ACTIVATE_ALL_CATEGORIES_AND_COUNTRIES.booleanValue()));
     }
 

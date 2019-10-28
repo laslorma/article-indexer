@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 
 import { INewsApiCategory } from 'app/shared/model/news-api-category.model';
-import { AccountService } from 'app/core';
+import { AccountService } from 'app/core/auth/account.service';
 import { NewsApiCategoryService } from './news-api-category.service';
 
 @Component({
@@ -21,14 +22,15 @@ export class NewsApiCategoryComponent implements OnInit, OnDestroy {
 
   constructor(
     protected newsApiCategoryService: NewsApiCategoryService,
-    protected jhiAlertService: JhiAlertService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected activatedRoute: ActivatedRoute,
     protected accountService: AccountService
   ) {
     this.currentSearch =
-      this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ? this.activatedRoute.snapshot.params['search'] : '';
+      this.activatedRoute.snapshot && this.activatedRoute.snapshot.queryParams['search']
+        ? this.activatedRoute.snapshot.queryParams['search']
+        : '';
   }
 
   loadAll() {
@@ -41,7 +43,7 @@ export class NewsApiCategoryComponent implements OnInit, OnDestroy {
           filter((res: HttpResponse<INewsApiCategory[]>) => res.ok),
           map((res: HttpResponse<INewsApiCategory[]>) => res.body)
         )
-        .subscribe((res: INewsApiCategory[]) => (this.newsApiCategories = res), (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: INewsApiCategory[]) => (this.newsApiCategories = res));
       return;
     }
     this.newsApiCategoryService
@@ -50,13 +52,10 @@ export class NewsApiCategoryComponent implements OnInit, OnDestroy {
         filter((res: HttpResponse<INewsApiCategory[]>) => res.ok),
         map((res: HttpResponse<INewsApiCategory[]>) => res.body)
       )
-      .subscribe(
-        (res: INewsApiCategory[]) => {
-          this.newsApiCategories = res;
-          this.currentSearch = '';
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: INewsApiCategory[]) => {
+        this.newsApiCategories = res;
+        this.currentSearch = '';
+      });
   }
 
   search(query) {
@@ -74,7 +73,7 @@ export class NewsApiCategoryComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().then(account => {
+    this.accountService.identity().subscribe(account => {
       this.currentAccount = account;
     });
     this.registerChangeInNewsApiCategories();
@@ -98,9 +97,5 @@ export class NewsApiCategoryComponent implements OnInit, OnDestroy {
 
   registerChangeInNewsApiCategories() {
     this.eventSubscriber = this.eventManager.subscribe('newsApiCategoryListModification', response => this.loadAll());
-  }
-
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
   }
 }

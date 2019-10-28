@@ -173,8 +173,8 @@ public class PartResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(part.getId().intValue())))
-            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT.toString())))
-            .andExpect(jsonPath("$.[*].posibleOptions").value(hasItem(DEFAULT_POSIBLE_OPTIONS.toString())));
+            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
+            .andExpect(jsonPath("$.[*].posibleOptions").value(hasItem(DEFAULT_POSIBLE_OPTIONS)));
     }
     
     @Test
@@ -188,8 +188,8 @@ public class PartResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(part.getId().intValue()))
-            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT.toString()))
-            .andExpect(jsonPath("$.posibleOptions").value(DEFAULT_POSIBLE_OPTIONS.toString()));
+            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT))
+            .andExpect(jsonPath("$.posibleOptions").value(DEFAULT_POSIBLE_OPTIONS));
     }
 
     @Test

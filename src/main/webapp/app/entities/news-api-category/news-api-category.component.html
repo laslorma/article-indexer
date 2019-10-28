@@ -8,6 +8,7 @@
             </span>
         </button>
     </h2>
+    <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-12">
@@ -29,14 +30,14 @@
         <span jhiTranslate="indexerApp.newsApiCategory.home.notFound">No newsApiCategories found</span>
     </div>
     <div class="table-responsive" *ngIf="newsApiCategories?.length > 0">
-        <table class="table table-striped">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="indexerApp.newsApiCategory.name">Name</span></th>
-            <th><span jhiTranslate="indexerApp.newsApiCategory.image">Image</span></th>
-            <th><span jhiTranslate="indexerApp.newsApiCategory.active">Active</span></th>
-            <th></th>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.newsApiCategory.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.newsApiCategory.image">Image</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.newsApiCategory.active">Active</span></th>
+            <th scope="col"></th>
             </tr>
             </thead>
             <tbody>

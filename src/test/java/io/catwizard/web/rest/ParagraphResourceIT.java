@@ -48,7 +48,6 @@ public class ParagraphResourceIT {
 
     private static final Integer DEFAULT_TOTAL_WORDS = 1;
     private static final Integer UPDATED_TOTAL_WORDS = 2;
-    private static final Integer SMALLER_TOTAL_WORDS = 1 - 1;
 
     private static final Boolean DEFAULT_HEADER = false;
     private static final Boolean UPDATED_HEADER = true;
@@ -197,7 +196,7 @@ public class ParagraphResourceIT {
             .andExpect(jsonPath("$.[*].originalCleanedContent").value(hasItem(DEFAULT_ORIGINAL_CLEANED_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].totalWords").value(hasItem(DEFAULT_TOTAL_WORDS)))
             .andExpect(jsonPath("$.[*].header").value(hasItem(DEFAULT_HEADER.booleanValue())))
-            .andExpect(jsonPath("$.[*].readability").value(hasItem(DEFAULT_READABILITY.toString())));
+            .andExpect(jsonPath("$.[*].readability").value(hasItem(DEFAULT_READABILITY)));
     }
     
     @Test
@@ -215,7 +214,7 @@ public class ParagraphResourceIT {
             .andExpect(jsonPath("$.originalCleanedContent").value(DEFAULT_ORIGINAL_CLEANED_CONTENT.toString()))
             .andExpect(jsonPath("$.totalWords").value(DEFAULT_TOTAL_WORDS))
             .andExpect(jsonPath("$.header").value(DEFAULT_HEADER.booleanValue()))
-            .andExpect(jsonPath("$.readability").value(DEFAULT_READABILITY.toString()));
+            .andExpect(jsonPath("$.readability").value(DEFAULT_READABILITY));
     }
 
     @Test

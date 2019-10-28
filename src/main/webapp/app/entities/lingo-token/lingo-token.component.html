@@ -8,6 +8,7 @@
             </span>
         </button>
     </h2>
+    <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-12">
@@ -29,17 +30,17 @@
         <span jhiTranslate="indexerApp.lingoToken.home.notFound">No lingoTokens found</span>
     </div>
     <div class="table-responsive" *ngIf="lingoTokens?.length > 0">
-        <table class="table table-striped">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.text">Text</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.blankText">Blank Text</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.lingoOrder">Lingo Order</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.posTag">Pos Tag</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.lemma">Lemma</span></th>
-            <th><span jhiTranslate="indexerApp.lingoToken.nerTag">Ner Tag</span></th>
-            <th></th>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.text">Text</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.blankText">Blank Text</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.lingoOrder">Lingo Order</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.posTag">Pos Tag</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.lemma">Lemma</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.lingoToken.nerTag">Ner Tag</span></th>
+            <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
