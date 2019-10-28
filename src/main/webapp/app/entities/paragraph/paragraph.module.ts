@@ -1,18 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  ParagraphComponent,
-  ParagraphDetailComponent,
-  ParagraphUpdateComponent,
-  ParagraphDeletePopupComponent,
-  ParagraphDeleteDialogComponent,
-  paragraphRoute,
-  paragraphPopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { ParagraphComponent } from './paragraph.component';
+import { ParagraphDetailComponent } from './paragraph-detail.component';
+import { ParagraphUpdateComponent } from './paragraph-update.component';
+import { ParagraphDeletePopupComponent, ParagraphDeleteDialogComponent } from './paragraph-delete-dialog.component';
+import { paragraphRoute, paragraphPopupRoute } from './paragraph.route';
 
 const ENTITY_STATES = [...paragraphRoute, ...paragraphPopupRoute];
 
@@ -25,16 +19,6 @@ const ENTITY_STATES = [...paragraphRoute, ...paragraphPopupRoute];
     ParagraphDeleteDialogComponent,
     ParagraphDeletePopupComponent
   ],
-  entryComponents: [ParagraphComponent, ParagraphUpdateComponent, ParagraphDeleteDialogComponent, ParagraphDeletePopupComponent],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [ParagraphDeleteDialogComponent]
 })
-export class IndexerParagraphModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerParagraphModule {}

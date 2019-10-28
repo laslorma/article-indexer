@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,7 +10,7 @@ import { JhiAlertService } from 'ng-jhipster';
 import { IPart, Part } from 'app/shared/model/part.model';
 import { PartService } from './part.service';
 import { IArticle } from 'app/shared/model/article.model';
-import { ArticleService } from 'app/entities/article';
+import { ArticleService } from 'app/entities/article/article.service';
 
 @Component({
   selector: 'jhi-part-update',

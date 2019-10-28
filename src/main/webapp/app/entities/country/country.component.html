@@ -8,6 +8,7 @@
             </span>
         </button>
     </h2>
+    <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
     <div class="row">
         <div class="col-sm-12">
@@ -29,15 +30,15 @@
         <span jhiTranslate="indexerApp.country.home.notFound">No countries found</span>
     </div>
     <div class="table-responsive" *ngIf="countries?.length > 0">
-        <table class="table table-striped">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="indexerApp.country.code">Code</span></th>
-            <th><span jhiTranslate="indexerApp.country.language">Language</span></th>
-            <th><span jhiTranslate="indexerApp.country.name">Name</span></th>
-            <th><span jhiTranslate="indexerApp.country.active">Active</span></th>
-            <th></th>
+            <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.country.code">Code</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.country.language">Language</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.country.name">Name</span></th>
+            <th scope="col" ><span jhiTranslate="indexerApp.country.active">Active</span></th>
+            <th scope="col"></th>
             </tr>
             </thead>
             <tbody>

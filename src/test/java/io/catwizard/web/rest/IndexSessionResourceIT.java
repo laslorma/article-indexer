@@ -48,34 +48,27 @@ public class IndexSessionResourceIT {
 
     private static final Long DEFAULT_NEWS_API_CALLS = 1L;
     private static final Long UPDATED_NEWS_API_CALLS = 2L;
-    private static final Long SMALLER_NEWS_API_CALLS = 1L - 1L;
 
     private static final Long DEFAULT_FIVE_FILTER_API_CALLS = 1L;
     private static final Long UPDATED_FIVE_FILTER_API_CALLS = 2L;
-    private static final Long SMALLER_FIVE_FILTER_API_CALLS = 1L - 1L;
 
     private static final ZonedDateTime DEFAULT_STARTED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_STARTED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-    private static final ZonedDateTime SMALLER_STARTED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(-1L), ZoneOffset.UTC);
 
     private static final ZonedDateTime DEFAULT_ENDED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_ENDED = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-    private static final ZonedDateTime SMALLER_ENDED = ZonedDateTime.ofInstant(Instant.ofEpochMilli(-1L), ZoneOffset.UTC);
 
     private static final Long DEFAULT_DURATION = 1L;
     private static final Long UPDATED_DURATION = 2L;
-    private static final Long SMALLER_DURATION = 1L - 1L;
 
     private static final Long DEFAULT_TOTAL_ARTICLES = 1L;
     private static final Long UPDATED_TOTAL_ARTICLES = 2L;
-    private static final Long SMALLER_TOTAL_ARTICLES = 1L - 1L;
 
     private static final Boolean DEFAULT_INDEXING = false;
     private static final Boolean UPDATED_INDEXING = true;
 
     private static final Long DEFAULT_ARTICLES_SAVED = 1L;
     private static final Long UPDATED_ARTICLES_SAVED = 2L;
-    private static final Long SMALLER_ARTICLES_SAVED = 1L - 1L;
 
     private static final String DEFAULT_ERROR_MESSAGE = "AAAAAAAAAA";
     private static final String UPDATED_ERROR_MESSAGE = "BBBBBBBBBB";

@@ -142,5 +142,4 @@ public class NewsApiCategoryResource {
             .stream(newsApiCategorySearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-
 }

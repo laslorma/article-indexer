@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity IndexSession.
@@ -19,46 +19,35 @@
             <column name="news_api_calls" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="five_filter_api_calls" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="started" type="datetime">
                 <constraints nullable="true" />
             </column>
-
             <column name="ended" type="datetime">
                 <constraints nullable="true" />
             </column>
-
             <column name="duration" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="total_articles" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="indexing" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <column name="articles_saved" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="error_message" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-
             <column name="had_error" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
         <dropDefaultValue tableName="index_session" columnName="started" columnDataType="datetime"/>
         <dropDefaultValue tableName="index_session" columnName="ended" columnDataType="datetime"/>
     </changeSet>

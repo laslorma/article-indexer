@@ -1,5 +1,4 @@
 package io.catwizard.repository;
-
 import io.catwizard.domain.Part;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;

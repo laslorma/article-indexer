@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity Article.
@@ -19,66 +19,50 @@
             <column name="author" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="title" type="varchar(1000)">
                 <constraints nullable="true" />
             </column>
-
             <column name="description" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-
             <column name="url" type="varchar(2000)">
                 <constraints nullable="true" />
             </column>
-
             <column name="url_to_image" type="varchar(2000)">
                 <constraints nullable="true" />
             </column>
-
             <column name="published_at" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="category" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="content" type="${clobType}">
                 <constraints nullable="true" />
             </column>
-
             <column name="country_code" type="varchar(2)">
                 <constraints nullable="true" />
             </column>
-
             <column name="language_code" type="varchar(2)">
                 <constraints nullable="true" />
             </column>
-
             <column name="sentiment" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="text_readability" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="number_of_parts" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="news_api_category_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <column name="source_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
     </changeSet>
 
     <changeSet id="20191027112633-1-relations" author="jhipster">

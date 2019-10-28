@@ -141,5 +141,4 @@ public class IndexConfigurationResource {
             .stream(indexConfigurationSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-
 }

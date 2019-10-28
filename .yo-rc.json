@@ -26,7 +26,7 @@
     "clientFramework": "angularX",
     "serverPort": "8085",
     "skipUserManagement": false,
-    "jhipsterVersion": "6.2.0",
+    "jhipsterVersion": "6.4.1",
     "clientPackageManager": "npm",
     "clientTheme": "none",
     "clientThemeVariant": "",
@@ -35,7 +35,8 @@
     "entitySuffix": "",
     "dtoSuffix": "DTO",
     "otherModules": [],
-    "blueprints": []
+    "blueprints": [],
+    "embeddableLaunchScript": false
   },
   "entities": ["Article", "NewsApiCategory", "Paragraph", "Part", "Country", "IndexSession", "Source", "IndexConfiguration"]
 }

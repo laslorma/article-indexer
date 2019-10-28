@@ -1,5 +1,4 @@
 package io.catwizard.repository.search;
-
 import io.catwizard.domain.Paragraph;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 

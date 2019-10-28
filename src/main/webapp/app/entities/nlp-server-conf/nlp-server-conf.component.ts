@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { INlpServerConf } from 'app/shared/model/nlp-server-conf.model';
-import { AccountService } from 'app/core';
+import { AccountService } from 'app/core/auth/account.service';
 import { NlpServerConfService } from './nlp-server-conf.service';
 
 @Component({
@@ -21,13 +22,14 @@ export class NlpServerConfComponent implements OnInit, OnDestroy {
 
   constructor(
     protected nlpServerConfService: NlpServerConfService,
-    protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
     protected activatedRoute: ActivatedRoute,
     protected accountService: AccountService
   ) {
     this.currentSearch =
-      this.activatedRoute.snapshot && this.activatedRoute.snapshot.params['search'] ? this.activatedRoute.snapshot.params['search'] : '';
+      this.activatedRoute.snapshot && this.activatedRoute.snapshot.queryParams['search']
+        ? this.activatedRoute.snapshot.queryParams['search']
+        : '';
   }
 
   loadAll() {
@@ -40,7 +42,7 @@ export class NlpServerConfComponent implements OnInit, OnDestroy {
           filter((res: HttpResponse<INlpServerConf[]>) => res.ok),
           map((res: HttpResponse<INlpServerConf[]>) => res.body)
         )
-        .subscribe((res: INlpServerConf[]) => (this.nlpServerConfs = res), (res: HttpErrorResponse) => this.onError(res.message));
+        .subscribe((res: INlpServerConf[]) => (this.nlpServerConfs = res));
       return;
     }
     this.nlpServerConfService
@@ -49,13 +51,10 @@ export class NlpServerConfComponent implements OnInit, OnDestroy {
         filter((res: HttpResponse<INlpServerConf[]>) => res.ok),
         map((res: HttpResponse<INlpServerConf[]>) => res.body)
       )
-      .subscribe(
-        (res: INlpServerConf[]) => {
-          this.nlpServerConfs = res;
-          this.currentSearch = '';
-        },
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+      .subscribe((res: INlpServerConf[]) => {
+        this.nlpServerConfs = res;
+        this.currentSearch = '';
+      });
   }
 
   search(query) {
@@ -73,7 +72,7 @@ export class NlpServerConfComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadAll();
-    this.accountService.identity().then(account => {
+    this.accountService.identity().subscribe(account => {
       this.currentAccount = account;
     });
     this.registerChangeInNlpServerConfs();
@@ -89,9 +88,5 @@ export class NlpServerConfComponent implements OnInit, OnDestroy {
 
   registerChangeInNlpServerConfs() {
     this.eventSubscriber = this.eventManager.subscribe('nlpServerConfListModification', response => this.loadAll());
-  }
-
-  protected onError(errorMessage: string) {
-    this.jhiAlertService.error(errorMessage, null, null);
   }
 }

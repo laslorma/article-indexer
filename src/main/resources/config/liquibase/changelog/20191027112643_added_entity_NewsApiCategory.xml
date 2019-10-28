@@ -6,7 +6,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <property name="autoIncrement" value="true"/>
+        <property name="autoIncrement" value="true"/>
 
     <!--
         Added the entity NewsApiCategory.
@@ -19,21 +19,17 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-
             <column name="image" type="longblob">
                 <constraints nullable="true" />
             </column>
             <column name="image_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-
             <column name="active" type="boolean">
                 <constraints nullable="true" />
             </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-
     </changeSet>
 
     <changeSet id="20191027112643-1-relations" author="jhipster">

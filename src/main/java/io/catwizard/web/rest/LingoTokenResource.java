@@ -141,5 +141,4 @@ public class LingoTokenResource {
             .stream(lingoTokenSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
-
 }

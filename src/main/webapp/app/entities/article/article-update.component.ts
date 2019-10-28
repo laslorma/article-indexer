@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -8,9 +10,9 @@ import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IArticle, Article } from 'app/shared/model/article.model';
 import { ArticleService } from './article.service';
 import { INewsApiCategory } from 'app/shared/model/news-api-category.model';
-import { NewsApiCategoryService } from 'app/entities/news-api-category';
+import { NewsApiCategoryService } from 'app/entities/news-api-category/news-api-category.service';
 import { ISource } from 'app/shared/model/source.model';
-import { SourceService } from 'app/entities/source';
+import { SourceService } from 'app/entities/source/source.service';
 
 @Component({
   selector: 'jhi-article-update',
@@ -105,8 +107,8 @@ export class ArticleUpdateComponent implements OnInit {
   setFileData(event, field: string, isImage) {
     return new Promise((resolve, reject) => {
       if (event && event.target && event.target.files && event.target.files[0]) {
-        const file = event.target.files[0];
-        if (isImage && !/^image\//.test(file.type)) {
+        const file: File = event.target.files[0];
+        if (isImage && !file.type.startsWith('image/')) {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
           const filedContentType: string = field + 'ContentType';
@@ -121,7 +123,8 @@ export class ArticleUpdateComponent implements OnInit {
         reject(`Base64 data was not set as file could not be extracted from passed parameter: ${event}`);
       }
     }).then(
-      () => console.log('blob added'), // sucess
+      // eslint-disable-next-line no-console
+      () => console.log('blob added'), // success
       this.onError
     );
   }

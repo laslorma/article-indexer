@@ -45,7 +45,6 @@ public class LingoTokenResourceIT {
 
     private static final Integer DEFAULT_LINGO_ORDER = 1;
     private static final Integer UPDATED_LINGO_ORDER = 2;
-    private static final Integer SMALLER_LINGO_ORDER = 1 - 1;
 
     private static final String DEFAULT_POS_TAG = "AAAAAAAAAA";
     private static final String UPDATED_POS_TAG = "BBBBBBBBBB";
@@ -196,12 +195,12 @@ public class LingoTokenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(lingoToken.getId().intValue())))
-            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT.toString())))
-            .andExpect(jsonPath("$.[*].blankText").value(hasItem(DEFAULT_BLANK_TEXT.toString())))
+            .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
+            .andExpect(jsonPath("$.[*].blankText").value(hasItem(DEFAULT_BLANK_TEXT)))
             .andExpect(jsonPath("$.[*].lingoOrder").value(hasItem(DEFAULT_LINGO_ORDER)))
-            .andExpect(jsonPath("$.[*].posTag").value(hasItem(DEFAULT_POS_TAG.toString())))
-            .andExpect(jsonPath("$.[*].lemma").value(hasItem(DEFAULT_LEMMA.toString())))
-            .andExpect(jsonPath("$.[*].nerTag").value(hasItem(DEFAULT_NER_TAG.toString())));
+            .andExpect(jsonPath("$.[*].posTag").value(hasItem(DEFAULT_POS_TAG)))
+            .andExpect(jsonPath("$.[*].lemma").value(hasItem(DEFAULT_LEMMA)))
+            .andExpect(jsonPath("$.[*].nerTag").value(hasItem(DEFAULT_NER_TAG)));
     }
     
     @Test
@@ -215,12 +214,12 @@ public class LingoTokenResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(lingoToken.getId().intValue()))
-            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT.toString()))
-            .andExpect(jsonPath("$.blankText").value(DEFAULT_BLANK_TEXT.toString()))
+            .andExpect(jsonPath("$.text").value(DEFAULT_TEXT))
+            .andExpect(jsonPath("$.blankText").value(DEFAULT_BLANK_TEXT))
             .andExpect(jsonPath("$.lingoOrder").value(DEFAULT_LINGO_ORDER))
-            .andExpect(jsonPath("$.posTag").value(DEFAULT_POS_TAG.toString()))
-            .andExpect(jsonPath("$.lemma").value(DEFAULT_LEMMA.toString()))
-            .andExpect(jsonPath("$.nerTag").value(DEFAULT_NER_TAG.toString()));
+            .andExpect(jsonPath("$.posTag").value(DEFAULT_POS_TAG))
+            .andExpect(jsonPath("$.lemma").value(DEFAULT_LEMMA))
+            .andExpect(jsonPath("$.nerTag").value(DEFAULT_NER_TAG));
     }
 
     @Test

@@ -1,34 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  SourceComponent,
-  SourceDetailComponent,
-  SourceUpdateComponent,
-  SourceDeletePopupComponent,
-  SourceDeleteDialogComponent,
-  sourceRoute,
-  sourcePopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { SourceComponent } from './source.component';
+import { SourceDetailComponent } from './source-detail.component';
+import { SourceUpdateComponent } from './source-update.component';
+import { SourceDeletePopupComponent, SourceDeleteDialogComponent } from './source-delete-dialog.component';
+import { sourceRoute, sourcePopupRoute } from './source.route';
 
 const ENTITY_STATES = [...sourceRoute, ...sourcePopupRoute];
 
 @NgModule({
   imports: [IndexerSharedModule, RouterModule.forChild(ENTITY_STATES)],
   declarations: [SourceComponent, SourceDetailComponent, SourceUpdateComponent, SourceDeleteDialogComponent, SourceDeletePopupComponent],
-  entryComponents: [SourceComponent, SourceUpdateComponent, SourceDeleteDialogComponent, SourceDeletePopupComponent],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [SourceDeleteDialogComponent]
 })
-export class IndexerSourceModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerSourceModule {}

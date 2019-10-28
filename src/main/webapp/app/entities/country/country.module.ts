@@ -1,18 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  CountryComponent,
-  CountryDetailComponent,
-  CountryUpdateComponent,
-  CountryDeletePopupComponent,
-  CountryDeleteDialogComponent,
-  countryRoute,
-  countryPopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { CountryComponent } from './country.component';
+import { CountryDetailComponent } from './country-detail.component';
+import { CountryUpdateComponent } from './country-update.component';
+import { CountryDeletePopupComponent, CountryDeleteDialogComponent } from './country-delete-dialog.component';
+import { countryRoute, countryPopupRoute } from './country.route';
 
 const ENTITY_STATES = [...countryRoute, ...countryPopupRoute];
 
@@ -25,16 +19,6 @@ const ENTITY_STATES = [...countryRoute, ...countryPopupRoute];
     CountryDeleteDialogComponent,
     CountryDeletePopupComponent
   ],
-  entryComponents: [CountryComponent, CountryUpdateComponent, CountryDeleteDialogComponent, CountryDeletePopupComponent],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [CountryDeleteDialogComponent]
 })
-export class IndexerCountryModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerCountryModule {}

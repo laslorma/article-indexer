@@ -1,18 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { IndexerSharedModule } from 'app/shared';
-import {
-  NlpServerConfComponent,
-  NlpServerConfDetailComponent,
-  NlpServerConfUpdateComponent,
-  NlpServerConfDeletePopupComponent,
-  NlpServerConfDeleteDialogComponent,
-  nlpServerConfRoute,
-  nlpServerConfPopupRoute
-} from './';
+import { IndexerSharedModule } from 'app/shared/shared.module';
+import { NlpServerConfComponent } from './nlp-server-conf.component';
+import { NlpServerConfDetailComponent } from './nlp-server-conf-detail.component';
+import { NlpServerConfUpdateComponent } from './nlp-server-conf-update.component';
+import { NlpServerConfDeletePopupComponent, NlpServerConfDeleteDialogComponent } from './nlp-server-conf-delete-dialog.component';
+import { nlpServerConfRoute, nlpServerConfPopupRoute } from './nlp-server-conf.route';
 
 const ENTITY_STATES = [...nlpServerConfRoute, ...nlpServerConfPopupRoute];
 
@@ -25,21 +19,6 @@ const ENTITY_STATES = [...nlpServerConfRoute, ...nlpServerConfPopupRoute];
     NlpServerConfDeleteDialogComponent,
     NlpServerConfDeletePopupComponent
   ],
-  entryComponents: [
-    NlpServerConfComponent,
-    NlpServerConfUpdateComponent,
-    NlpServerConfDeleteDialogComponent,
-    NlpServerConfDeletePopupComponent
-  ],
-  providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  entryComponents: [NlpServerConfDeleteDialogComponent]
 })
-export class IndexerNlpServerConfModule {
-  constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-    this.languageHelper.language.subscribe((languageKey: string) => {
-      if (languageKey) {
-        this.languageService.changeLanguage(languageKey);
-      }
-    });
-  }
-}
+export class IndexerNlpServerConfModule {}
