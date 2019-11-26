@@ -1,14 +1,19 @@
 package io.catwizard.service;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.catwizard.domain.*;
 import io.catwizard.repository.IndexConfigurationRepository;
+import javassist.NotFoundException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +35,8 @@ public class NewsApiService {
     // private String NEWS_API = "9499d0cd82d64052837be9240bbe0125";
 
     IndexConfigurationRepository indexConfigurationRepository;
+
+    private final Logger log = LoggerFactory.getLogger(NewsApiService.class);
 
     public NewsApiService(IndexConfigurationRepository indexConfigurationRepository) {
 
@@ -100,7 +107,7 @@ public class NewsApiService {
     }
 
 
-    public ArrayList<Article> searchSourcesByCategoryTrendingNewsApi(String categoryName, Country country, int pageSize, int page, IndexSession indexSession) throws Exception {
+    public ArrayList<Article> searchSourcesByCategoryTrendingNewsApi(String categoryName, Country country, int pageSize, int page, IndexSession indexSession) throws NotFoundException {
 
         //https://newsapi.org/v1/sources?language=en&category=general
         Optional<IndexConfiguration> indexConfiguration = indexConfigurationRepository.findById(1l);
@@ -119,9 +126,9 @@ public class NewsApiService {
         if (stringObjectMap!=null) {
 
             if (stringObjectMap.containsKey("status")&&(stringObjectMap.get("status").toString().equalsIgnoreCase("error"))) {
-                throw new Exception(stringObjectMap.toString());
+                throw new NotFoundException(stringObjectMap.toString());
             } if (stringObjectMap.get("articles")==null){
-                throw new Exception("ERROR WITH: https://newsapi.org ");
+                throw new NotFoundException("ERROR WITH: https://newsapi.org ");
             }
 
             arrayList = (ArrayList<LinkedHashMap>) stringObjectMap.get("articles");
@@ -130,20 +137,28 @@ public class NewsApiService {
         }
 
 
-
+        log.info("Total Articles received: " + arrayList.size());
+        int count = 1;
         for (LinkedHashMap linkedHashMap : arrayList){
 
-            ObjectMapper objectMapper = new ObjectMapper();
+            log.info("Parsing article " + count +" of " + arrayList.size());
 
-            String jsonString = new JSONObject(linkedHashMap).toString();
-            Article article = null;
+            try {
+                ObjectMapper objectMapper = new ObjectMapper();
 
-            article = objectMapper.readValue(jsonString,Article.class);
-            article.setCategory(categoryName);
-            article.setCountryCode(country.getCode());
-            article.setLanguageCode(country.getLanguage());
-            articleArrayList.add(article);
+                String jsonString = new JSONObject(linkedHashMap).toString();
+                Article article = null;
 
+                article = objectMapper.readValue(jsonString, Article.class);
+                article.setCategory(categoryName);
+                article.setCountryCode(country.getCode());
+                article.setLanguageCode(country.getLanguage());
+                articleArrayList.add(article);
+            } catch (Exception e){
+                log.error("Error parsing article " + e.getMessage());
+            }
+
+            count++;
         }
 
         indexSession.setNewsApiCalls(indexSession.getNewsApiCalls()+1);

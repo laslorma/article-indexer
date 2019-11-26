@@ -1,4 +1,6 @@
 package io.catwizard.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -16,6 +18,7 @@ import java.util.Set;
 @Table(name = "source")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "source")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Source implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,6 +26,7 @@ public class Source implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)
+    @JsonIgnore
     private Long id;
 
     @Column(name = "source_id")

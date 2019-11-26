@@ -32,7 +32,7 @@ public class FiveFilterHtmlRssParserService {
     public static String LETS_BLOCK_ADS = "<p><strong><a href=\"https://blockads.fivefilters.org\">Let's block ads!</a></strong> <a href=\"https://blockads.fivefilters.org/acceptable.html\">(Why?)</a></p>";
 
 
-    public String getArticleFullText(String stringUrl) throws IOException, FeedException {
+    public String getArticleFullText(String stringUrl) throws IOException, FeedException, NullPointerException {
 
         String url = "http://ftr.fivefilters.org/makefulltextfeed.php?url="+ URLEncoder.encode(stringUrl.toString(), "ISO-8859-1")+"&max=3";
 
@@ -40,12 +40,19 @@ public class FiveFilterHtmlRssParserService {
         log.debug("Parsing "+url);
         SyndFeed feed = new SyndFeedInput().build(new XmlReader(new URL(url)));
         // log.debug(feed.getTitle());
-        SyndEntryImpl entry1 = (SyndEntryImpl)(feed.getEntries().get(0)) ;
+        if ((feed == null ) || (feed.getEntries() == null ) ||  (feed.getEntries().size() == 0)){
 
-        SyndContent syndContent = entry1.getDescription();
+            return ArticleService.UNABLE_TO_RETRIEVE_FULL_TEXT_CONTENT;
 
-        return syndContent.getValue().replace(LETS_BLOCK_ADS,"");
+        }else {
 
+
+            SyndEntryImpl entry1 = (SyndEntryImpl) (feed.getEntries().get(0));
+
+            SyndContent syndContent = entry1.getDescription();
+
+            return syndContent.getValue().replace(LETS_BLOCK_ADS, "");
+        }
     }
 
     public String getArticleFullTextBoiler(String urlString) throws BoilerpipeProcessingException, MalformedURLException, UnsupportedEncodingException {

@@ -18,6 +18,7 @@ import java.util.Set;
 @Table(name = "article")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "article")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,7 +78,7 @@ public class Article implements Serializable {
     @JsonIgnoreProperties("articles")
     private NewsApiCategory newsApiCategory;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JsonIgnoreProperties("articles")
     private Source source;
 

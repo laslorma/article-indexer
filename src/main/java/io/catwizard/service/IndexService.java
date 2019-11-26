@@ -64,7 +64,7 @@ public class IndexService {
      * every 8 hours == 3 times a day
      * @return
      */
-    @Scheduled(fixedDelay = 8*3600000, initialDelay = 1800000)
+    @Scheduled(fixedDelay = 8*3600000, initialDelay = 18000)
     //@Transactional(noRollbackFor = Exception.class)
     public IndexSession indexArticlesByCategoryTrending() throws IndexServiceException {
 
@@ -83,6 +83,8 @@ public class IndexService {
         indexSession.setStarted(ZonedDateTime.now(ZoneId.systemDefault()));
         indexSession.setHadError(false);
         indexSession.setIndexing(true);
+        indexSession.setNewsApiCalls(0l);
+        indexSession.setFiveFilterApiCalls(0l);
         indexSessionService.save(indexSession);
 
         List<NewsApiCategory> categoryList = newsApiCategoryRepository.findByActiveTrue();
@@ -243,14 +245,14 @@ public class IndexService {
         long endTime;
         if (articleList.size()>0) {
             /// Deleting article table
-
-            log.debug("Deleting article table START");
-            articleRepository.truncateArticle();
-            log.debug("Deleting article table DONE");
-
-            log.debug("Deleting source table START");
-            sourceRepository.truncateSource();
-            log.debug("Deleting source table DONE");
+//
+//            log.debug("Deleting article table START");
+//            articleRepository.truncateArticle();
+//            log.debug("Deleting article table DONE");
+//
+//            log.debug("Deleting source table START");
+//            sourceRepository.truncateSource();
+//            log.debug("Deleting source table DONE");
 
             // Updating article table
 
@@ -297,7 +299,7 @@ public class IndexService {
             try
             {
 
-                articleRepository.save(article);
+                articleService.save(article);
                 log.debug("Saved article "+index+" of "+size);
                 index++;
 

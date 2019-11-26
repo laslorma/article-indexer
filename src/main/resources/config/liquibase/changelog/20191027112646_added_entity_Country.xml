@@ -37,6 +37,21 @@
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
+    <changeSet id="20191027112646-1-init-data" author="ernesto">
+
+        <loadData
+            file="config/liquibase/data/country.csv"
+            separator=";"
+            tableName="country">
+            <column name="id" type="numeric"/>
+            <column name="code" type="string"/>
+            <column name="language" type="string"/>
+            <column name="name" type="string"/>
+            <column name="active" type="boolean"/>
+        </loadData>
+
+    </changeSet>
+
     <!--
         Load sample data generated with Faker.js
         - This data can be easily edited using a CSV editor (or even MS Excel) and
