@@ -5,6 +5,9 @@ import io.catwizard.repository.ArticleRepository;
 import io.catwizard.repository.search.ArticleSearchRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Entities;
+import org.jsoup.safety.Cleaner;
+import org.jsoup.safety.Whitelist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -124,12 +127,26 @@ public class ArticleService {
 
         if (article.getContent()!= null) {
 
-            String content = this.parseTextOnly(article.getContent());
-
-            String readability = nlpFlaskPythonService.calculateReadingDifficulty(content, article.getLanguageCode()).getReadability();
+            String readability = nlpFlaskPythonService.calculateReadingDifficulty(article.getContent(), article.getLanguageCode()).getReadability();
 
             article.setTextReadability(readability);
 
         }
+    }
+
+    public static String htmlToText(String html) {
+
+        Document doc = Jsoup.parse(html);
+
+        // https://jsoup.org/apidocs/org/jsoup/safety/Whitelist.html#simpleText--
+        // Example https://stackoverflow.com/questions/8683018/jsoup-clean-without-adding-html-entities
+        // This whitelist allows a fuller range of text nodes: a, b, blockquote, br, cite, code, dd, dl, dt, em, i, li, ol, p, pre, q, small, span, strike, strong, sub, sup, u, ul, and appropriate attributes.
+        doc = new Cleaner(Whitelist.basic()).clean(doc);
+
+        // Adjust escape mode
+        doc.outputSettings().escapeMode(Entities.EscapeMode.xhtml);
+
+        // Get back the string of the body.
+        return doc.body().text();
     }
 }

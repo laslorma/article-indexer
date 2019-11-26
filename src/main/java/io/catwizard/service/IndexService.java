@@ -213,7 +213,8 @@ public class IndexService {
 
                 }else{
 
-                    article.setContent(htmlUnclutteredContent);
+                    String rawContent = articleService.htmlToText(htmlUnclutteredContent);
+                    article.setContent(rawContent);
 
                 }
 
