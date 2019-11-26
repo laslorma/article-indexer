@@ -1,3 +1,10 @@
+## Written by Ernesto
+### Elastic Search
+Before starting development run elastic search
+
+```docker-compose -f src/main/docker/elasticsearch.yml up -d && export SPRING_DATA_JEST_URI=http://localhost:9200```
+
+
 # indexer
 
 This application was generated using JHipster 6.4.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.4.1](https://www.jhipster.tech/documentation-archive/v6.4.1).
