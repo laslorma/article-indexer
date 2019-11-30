@@ -1,15 +1,15 @@
 code;language;name;active
 us;en;United States;TRUE
-gb;en;United Kingdom of Great Britain and Northern Ireland;FALSE
-ca;en;Canada;FALSE
-au;en;Australia;FALSE
-ie;en;Ireland;FALSE
-co;es;Colombia;FALSE
-mx;es;Mexico;FALSE
+gb;en;United Kingdom of Great Britain and Northern Ireland;TRUE
+ca;en;Canada;TRUE
+au;en;Australia;TRUE
+ie;en;Ireland;TRUE
+co;es;Colombia;TRUE
+mx;es;Mexico;TRUE
 es;es;Spain;TRUE
-ar;es;Argentina;FALSE
-cl;es;Chile;FALSE
-pe;es;Peru ;FALSE
-it;it;Italy;FALSE
-de;de;Germany;FALSE
-fr;fr;France; FALSE
+ar;es;Argentina;TRUE
+cl;es;Chile;TRUE
+pe;es;Peru ;TRUE
+it;it;Italy;TRUE
+de;de;Germany;TRUE
+fr;fr;France; TRUE

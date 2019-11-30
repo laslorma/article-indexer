@@ -9,8 +9,6 @@ import io.catwizard.repository.ArticleRepository;
 import io.catwizard.repository.CountryRepository;
 import io.catwizard.repository.NewsApiCategoryRepository;
 import io.catwizard.repository.SourceRepository;
-import io.catwizard.web.rest.CountryResource;
-import io.catwizard.web.rest.errors.IndexServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -66,7 +64,7 @@ public class IndexService {
      */
     @Scheduled(fixedDelay = 8*3600000, initialDelay = 18000)
     //@Transactional(noRollbackFor = Exception.class)
-    public IndexSession indexArticlesByCategoryTrending() throws IndexServiceException {
+    public IndexSession indexArticlesByCategoryTrending() throws Exception {
 
         int pageSize = 100;
         int page=0;
@@ -114,7 +112,7 @@ public class IndexService {
 
                     handleIndexerError(indexSession, e);
 
-                    throw  new IndexServiceException(e.getMessage());
+                    throw  new Exception(e.getMessage());
 
 
                 }

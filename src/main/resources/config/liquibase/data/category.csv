@@ -1,8 +1,8 @@
 name;active
-technology;FALSE
-business;FALSE
-entertainment;FALSE
-general;FALSE
-health;FALSE
+technology;TRUE
+business;TRUE
+entertainment;TRUE
+general;TRUE
+health;TRUE
 science;TRUE
-sports;FALSE
+sports;TRUE
