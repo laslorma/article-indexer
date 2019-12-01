@@ -4,7 +4,33 @@ Before starting development run elastic search
 
 ```docker-compose -f src/main/docker/elasticsearch.yml up -d && export SPRING_DATA_JEST_URI=http://localhost:9200```
 
+### Using ES with python
 
+```
+from elasticsearch import Elasticsearch
+import json
+
+# make an API call to the Elasticsearch cluster to get documents
+#
+# docs in https://elasticsearch-py.readthedocs.io/en/master/
+# Show indexes: http://45.79.1.250:9200/_cat/indices?v
+# Article index Show indexes: http://45.79.1.250:9200/
+elastic_client = Elasticsearch()
+# result = elastic_client.search(["http://45.79.1.250:9200/"], index='article', body={}, size=99)
+
+elastic_client = Elasticsearch([{'host': '45.79.1.250', 'port': 9200}])
+
+result = elastic_client.search(index='article', body={}, size=10000)
+
+articles_elasitcsearch = result["hits"]["hits"]
+
+for article in articles_elasitcsearch:
+    print(article['_source']['author'])
+
+
+
+print ("Hello")
+```
 # indexer
 
 This application was generated using JHipster 6.4.1, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.4.1](https://www.jhipster.tech/documentation-archive/v6.4.1).
